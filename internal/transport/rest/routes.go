@@ -7,17 +7,17 @@ import (
 )
 
 type Router struct {
-	Router      *http.ServeMux
+	Mux         *http.ServeMux
 	StaticFiles embed.FS
-	database    *handlers.HintHandler
+	Database    *handlers.HintHandler
 }
 
 func (r Router) CreateRoutes() {
 	// Configure the router for static files
-	r.Router.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.FS(r.StaticFiles))))
+	r.Mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.FS(r.StaticFiles))))
 
-	r.Router.HandleFunc("/", handlers.Home)
-	r.Router.HandleFunc("GET /citysearch/{word}", r.database.ListHintsHandler)
-	r.Router.HandleFunc("GET /search/{id}", r.database.GetCityCoordinates)
+	r.Mux.HandleFunc("/", handlers.Home)
+	r.Mux.HandleFunc("GET /citysearch/{word}", r.Database.ListHintsHandler)
+	r.Mux.HandleFunc("GET /search/{id}", r.Database.GetCityCoordinates)
 
 }
