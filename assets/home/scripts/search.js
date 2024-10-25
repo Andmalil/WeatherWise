@@ -1,6 +1,6 @@
 var hint_count = 0
 var current_data = null
-var debug = true
+var debug = false
 
 
 // Changes height of search hints field
