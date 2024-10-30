@@ -2,8 +2,8 @@ package handlers
 
 import (
 	// "html/template"
+	"github.com/Andmalil/WeatherWise/client"
 	"net/http"
-	"weatherwise/client"
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {

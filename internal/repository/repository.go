@@ -2,10 +2,10 @@ package repository
 
 import (
 	"database/sql"
+	"github.com/Andmalil/WeatherWise/internal/repository/postgresql"
+	"github.com/Andmalil/WeatherWise/internal/service"
+	"github.com/Andmalil/WeatherWise/internal/transport/rest/handlers"
 	"log"
-	"weatherwise/internal/repository/postgresql"
-	"weatherwise/internal/service"
-	"weatherwise/internal/transport/rest/handlers"
 
 	_ "github.com/lib/pq"
 )

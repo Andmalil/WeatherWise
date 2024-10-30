@@ -1,8 +1,8 @@
 package service
 
 import (
-	"weatherwise/internal/core"
-	"weatherwise/internal/repository/postgresql"
+	"github.com/Andmalil/WeatherWise/internal/core"
+	"github.com/Andmalil/WeatherWise/internal/repository/postgresql"
 )
 
 type HintService struct {

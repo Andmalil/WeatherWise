@@ -3,7 +3,8 @@ package rest
 import (
 	"embed"
 	"net/http"
-	"weatherwise/internal/transport/rest/handlers"
+
+	"github.com/Andmalil/WeatherWise/internal/transport/rest/handlers"
 )
 
 type Router struct {

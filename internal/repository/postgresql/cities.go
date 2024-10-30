@@ -3,7 +3,8 @@ package postgresql
 import (
 	"database/sql"
 	"log"
-	"weatherwise/internal/core"
+
+	"github.com/Andmalil/WeatherWise/internal/core"
 
 	_ "github.com/lib/pq"
 )

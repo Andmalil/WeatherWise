@@ -5,5 +5,5 @@ import (
 )
 
 func MiddlewareFunc(next http.HandlerFunc) http.HandlerFunc {
-
+	return next
 }

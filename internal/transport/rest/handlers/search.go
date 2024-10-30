@@ -2,12 +2,12 @@ package handlers
 
 import (
 	"encoding/json"
+	"github.com/Andmalil/WeatherWise/internal/core"
+	"github.com/Andmalil/WeatherWise/internal/transport/rest/weatherapi"
 	"log"
 	"net/http"
 	"strconv"
 	"strings"
-	"weatherwise/internal/core"
-	"weatherwise/internal/transport/rest/weatherapi"
 )
 
 type HintHandler struct {
