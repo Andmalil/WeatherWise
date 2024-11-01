@@ -13,21 +13,7 @@ type WeatherApi struct {
 	Key string
 }
 
-// type WeatherLocation struct {
-// 	name    string
-// 	region  string
-// 	country string
-// 	lat     float32
-// 	lng     float32
-// 	tz_id   string
-// }
-
-// type WeatherJSON struct {
-// 	Location WeatherLocation
-// }
-
 func (w WeatherApi) GetWeather(lat float32, lng float32) []byte {
-	// var coordinatesJSON = fmt.Sprintf(`{"key":"%s","q":"%g,%g"}`, w.Key, lat, lng)
 	params := url.Values{}
 	params.Add("key", w.Key)
 	params.Add("q", fmt.Sprintf("%g,%g", lat, lng))
@@ -35,14 +21,14 @@ func (w WeatherApi) GetWeather(lat float32, lng float32) []byte {
 	u, _ := url.ParseRequestURI(w.Url)
 	u.RawQuery = params.Encode()
 
-	req, err := http.NewRequest("GET", fmt.Sprintf("%v", u), nil)
+	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("%v", u), nil)
 
 	if err != nil {
 		log.Println(err)
 	}
 
 	req.Header.Set("Content-Type", "application/json")
-	client := &http.Client{}
+	client := http.Client{}
 	resp, err := client.Do(req)
 
 	if err != nil {
@@ -50,7 +36,7 @@ func (w WeatherApi) GetWeather(lat float32, lng float32) []byte {
 	}
 	defer resp.Body.Close()
 
-	fmt.Println("response Status:", resp.Status)
+	log.Println("response Status:", resp.Status)
 	body, _ := io.ReadAll(resp.Body)
 	return body
 }

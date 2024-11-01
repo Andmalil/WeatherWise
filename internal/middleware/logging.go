@@ -5,8 +5,9 @@ import (
 	"net/http"
 )
 
-func RoutingLogging(next http.HandlerFunc) http.HandlerFunc {
-
-	log.Printf("Hello")
-	return next
+func LoggingMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("Host %v, Method: %v\n", r.Host, r.Method)
+		next.ServeHTTP(w, r)
+	})
 }

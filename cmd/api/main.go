@@ -1,25 +1,25 @@
 package main
 
 import (
-	"github.com/Andmalil/WeatherWise/assets"
-	"github.com/Andmalil/WeatherWise/internal/middleware"
-	"github.com/Andmalil/WeatherWise/internal/repository"
-	"github.com/Andmalil/WeatherWise/internal/transport/rest"
 	"log"
+	"net/http"
+	"time"
+
+	"github.com/Andmalil/WeatherWise/internal/middleware"
+	"github.com/Andmalil/WeatherWise/internal/server"
 )
 
-func checkErr(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
-}
 func main() {
-	database := repository.NewSearchManager()
-	// router := rest.Router{Mux: http.NewServeMux(), StaticFiles: assets.StaticFile, Database: database}
-	server := rest.NewServer(":3000", assets.StaticFile, database)
+	server := server.New(":3000", 10*time.Second)
 
-	server.UseMiddleware(middleware.RoutingLogging)
+	server.GET("/hello1", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Hello1")
+	})
 
-	err := server.ListenAndServe()
-	checkErr(err)
+	server.GET("/hello2", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Hello2")
+	})
+	server.UseMiddleware(middleware.LoggingMiddleware)
+
+	server.ListenAndServe()
 }
