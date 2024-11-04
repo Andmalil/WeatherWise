@@ -7,7 +7,7 @@ import (
 
 func LoggingMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("Host %v, Method: %v\n", r.Host, r.Method)
+		log.Printf("Method %v, Host: %v, Pattern: %v\n", r.Method, r.Host, r.Pattern)
 		next.ServeHTTP(w, r)
 	})
 }
