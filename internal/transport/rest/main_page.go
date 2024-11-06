@@ -9,12 +9,18 @@ import (
 	"net/http"
 )
 
+type cash interface {
+	Set(key string, value interface{})
+	Get(key string)
+}
 type HomePage struct {
 	Template embed.FS
+	hints    cash
 }
 
 func (p *HomePage) Home(w http.ResponseWriter, r *http.Request) {
 	// t, err := template.ParseFiles("../../templates/index.html")
+
 	t, err := template.ParseFS(p.Template, "index.html")
 	if err != nil {
 		log.Println(err)
