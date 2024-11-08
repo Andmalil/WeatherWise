@@ -1,5 +1,17 @@
-version: '3'
+version: '3.6'
 
 services:
   redis:
-    image: ""
+      build: ./redis
+      ports:
+      - "6379:6379"
+  app:
+      build: .
+      working_dir: /app
+      ports:
+      - "3000:3000"
+      volumes:
+      - .:/usr/local/etc/redis/volumes
+      links:
+      - redis
+  

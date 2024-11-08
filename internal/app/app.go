@@ -26,14 +26,14 @@ func Run() {
 	server := server.New(":3000", 10*time.Second)
 
 	hintTask := &repository.SQLHintStore{Database: hints_db}
-	hintService := &service.HintService{Store: hintTask}
-	hintHandler := rest.HintHandler{HintService: hintService}
+	hintService := service.HintService{Store: hintTask}
+	hintHandler := rest.HintHandler{HintService: &hintService}
 
 	hint_cash := cash.New(context.Background(), "127.0.0.1:6379", "", 0)
 	hint_list, err := hintService.HintList()
 
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Failed to recieve of the hint list: ", err)
 	}
 	for _, h := range hint_list {
 		hint_cash.Set(strconv.Itoa(h.ID), strconv.Itoa(h.ID))
@@ -49,6 +49,6 @@ func Run() {
 
 	err = server.ListenAndServe()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Failed to start the server: ", err)
 	}
 }

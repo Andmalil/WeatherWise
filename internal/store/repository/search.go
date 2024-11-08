@@ -17,7 +17,6 @@ func (s *SQLHintStore) GetHints() ([]core.SearchHint, error) {
 	// if err != nil {
 	// 	log.Fatal(err)
 	// }
-
 	rows, err := s.Database.Query("SELECT name, name_ascii, lat, lng, country FROM city")
 	if err != nil {
 		return nil, err

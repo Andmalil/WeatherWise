@@ -9,8 +9,10 @@ RUN go mod download
 
 COPY . .
 
-RUN CGO_ENABLED=1 GOOS=linux go build -v -o server cmd/api/main.go
+RUN apk add --update gcc musl-dev
+
+RUN CGO_ENABLED=1 GOOS=linux go build -v -o /server cmd/api/main.go
 
 EXPOSE 3000
 
-CMD ["server"]
+CMD ["/server"]
