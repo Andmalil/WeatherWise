@@ -4,8 +4,7 @@ import (
 	"database/sql"
 
 	"github.com/Andmalil/WeatherWise/internal/core"
-
-	_ "github.com/mattn/go-sqlite3"
+	"github.com/cvilsmeier/sqinn-go/sqinn"
 )
 
 type SQLHintStore struct {
@@ -13,27 +12,25 @@ type SQLHintStore struct {
 }
 
 func (s *SQLHintStore) GetHints() ([]core.SearchHint, error) {
-	// db, err := sql.Open("sqlite3", "database/worldcities.db")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	rows, err := s.Database.Query("SELECT name, name_ascii, lat, lng, country FROM city")
-	if err != nil {
-		return nil, err
-	}
+	sq := sqinn.MustLaunch(sqinn.Options{
+		SqinnPath: "../../config/sql/sqinn.exe",
+	})
+	defer sq.Terminate()
 
-	defer rows.Close()
+	sq.MustOpen("../../internal/store/repository/database/worldcities.db")
+	defer sq.Close()
 
 	var hints []core.SearchHint
-
-	for rows.Next() {
-		var hint core.SearchHint
-
-		if err := rows.Scan(&hint.Name, &hint.NameASCII, &hint.Lat, &hint.Lng, &hint.Country); err != nil {
-			return nil, err
-		}
-
-		hints = append(hints, hint)
+	rows := sq.MustQuery("SELECT id, name, name_ascii, lat, lng, country FROM city", nil, []byte{sqinn.ValInt, sqinn.ValText, sqinn.ValText, sqinn.ValDouble, sqinn.ValDouble, sqinn.ValText})
+	for _, row := range rows {
+		hints = append(hints, core.SearchHint{
+			ID:        row.Values[0].AsInt(),
+			Name:      row.Values[1].AsString(),
+			NameASCII: row.Values[2].AsString(),
+			Lat:       float32(row.Values[3].AsDouble()),
+			Lng:       float32(row.Values[4].AsDouble()),
+			Country:   row.Values[5].AsString(),
+		})
 	}
 
 	return hints, nil
