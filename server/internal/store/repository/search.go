@@ -13,11 +13,11 @@ type SQLHintStore struct {
 
 func (s *SQLHintStore) GetHints() ([]core.SearchHint, error) {
 	sq := sqinn.MustLaunch(sqinn.Options{
-		SqinnPath: "../../config/sql/sqinn.exe",
+		SqinnPath: "./config/sql/sqinn.exe",
 	})
 	defer sq.Terminate()
 
-	sq.MustOpen("../../internal/store/repository/database/worldcities.db")
+	sq.MustOpen("./internal/store/repository/database/worldcities.db")
 	defer sq.Close()
 
 	var hints []core.SearchHint

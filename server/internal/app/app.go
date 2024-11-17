@@ -1,12 +1,13 @@
 package app
 
 import (
-	// "database/sql"
 	"log"
+	"os"
 	"time"
 
+	"github.com/lpernett/godotenv"
+
 	"github.com/Andmalil/WeatherWise/assets"
-	"github.com/Andmalil/WeatherWise/internal/cache"
 	"github.com/Andmalil/WeatherWise/internal/middleware"
 	"github.com/Andmalil/WeatherWise/internal/server"
 	"github.com/Andmalil/WeatherWise/internal/service"
@@ -16,28 +17,36 @@ import (
 )
 
 func Run() {
-	// hints_db, err := sql.Open("sqlite3", "database/worldcities.db")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
 
-	server := server.New(":3000", 10*time.Second)
+	// load .env file
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Failed to load .env file")
+	}
+
+	server := server.New(os.Getenv("ADDRESS"), 10*time.Second)
 
 	hintTask := &repository.SQLHintStore{}
-	hintService := service.HintService{Store: hintTask}
 
-	hintHandler := rest.HintHandler{HintService: &hintService}
+	hints, err := hintTask.GetHints()
 
-	cache.Caching(hintTask)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	hintService := service.HintService{Store: hints}
+
+	hintHandler := rest.HintHandler{HintService: hintService}
 
 	homePage := rest.HomePage{Template: templates.TemplateFiles}
 	server.GET("/", homePage.Home)
 
 	server.GET("/citysearch/{word}", hintHandler.ListHintsHandler)
+	server.GET("/search/{id}", hintHandler.GetCityCurrentWeather)
 	server.UseMiddleware(middleware.LoggingMiddleware)
 	server.StaticFiles("/assets/", assets.StaticFiles)
 
-	err := server.ListenAndServe()
+	err = server.ListenAndServe()
 	if err != nil {
 		log.Fatal("Failed to start the server: ", err)
 	}

@@ -51,8 +51,8 @@ function load_hints(data) {
 
             result += `
             <li  id="${data[i]["id"]}" class="hint-content-item">
-                <button onclick="select_hint('${data[i]["id"]}', '${data[i]["name_ascii"]}')">
-                    ${data[i]["name_ascii"]} (${data[i]["country"]})
+                <button onclick="select_hint('${data[i]["ID"]}', '${data[i]["NameASCII"]}')">
+                    ${data[i]["NameASCII"]} (${data[i]["Country"]})
                 </button>
             </li>`
         }
