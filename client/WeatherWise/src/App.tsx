@@ -1,16 +1,17 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
-import { Search } from "./compoents/Search.tsx"
+import './App.scss'
+import { Header } from "./compoents/Header.tsx"
 
 export function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+      <Header />
       <div>
-        <Search />
+        
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
