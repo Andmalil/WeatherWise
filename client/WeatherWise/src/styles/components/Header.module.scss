@@ -1,6 +1,12 @@
+@use "../base/variables.scss" as v;
+
 .header {
+    position: absolute;
     width: 100%;
     height: 50px;
-    background-color: #A0ACB6;
+    background: linear-gradient(to bottom, v.$accent_color_1, v.$accent_color_2);
+    border-bottom: 2px solid v.$accent_color_3;
+    
     z-index: 0;
+    filter: drop-shadow(0, 20px, 4px, rgba(0, 0, 0, 0.25));
 }

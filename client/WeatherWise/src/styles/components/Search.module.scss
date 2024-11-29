@@ -1,26 +1,29 @@
-$Search_color: #F5F6FD;
-$Search_button_color: #636B74;
+@use "../base/variables.scss" as v;
 
 .search_panel {
     max-width: 537px;
     height: 30px;
     position: relative;
-    // background-color: $Search_color;
-    background: transparent;
-    border: 1px solid black;
+    background-color: v.$base_color;
+    // background: transparent;
+    border: none;
     border-radius: 5px;
     top: 50%;
     left: 50%;
+    margin: {
+        top: auto;
+        bottom: auto;
+    }
     transform: translate(-50%, -50%);
     display: flex;
     overflow: hidden;
-    z-index: 2;
+    z-index: 1;
 }
 
 
 .search_panel button {
-    background: transparent;
-    // background-color: $Search_color;
+    // background: transparent;
+    background-color: v.$base_color;
     position: relative;
     height: 30px;
     width: 30px;
@@ -35,7 +38,17 @@ $Search_button_color: #636B74;
 }
 
 .search_panel button svg {
-    fill: $Search_button_color;
+    fill: v.$light_icon_gray;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    transform: translate(-50%, -50%);
+}
+
+.search_panel .clear_all_button svg {
+    fill: v.$light_icon_gray;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -55,9 +68,28 @@ $Search_button_color: #636B74;
     right: 0;
 }
 
+.clear_all_icon {
+    visibility: visible;
+    
+}
+
+
+
+.clear_all_button:hover .clear_all_icon {
+    visibility: hidden;
+}
+
+.clear_all_hovered_icon {
+    visibility: hidden;
+}
+
+.clear_all_button:hover .clear_all_hovered_icon {
+    visibility: visible;
+}
+
 .search {
-    background: transparent;
-    // background-color: $Search_color;
+    // background: transparent;
+    background-color: v.$base_color;
     color: black;
     border: none;
     height: 100%;
@@ -68,3 +100,82 @@ $Search_button_color: #636B74;
 .search:focus {
     outline: none;
 }
+
+.search:placeholder-shown + .clear_all_button>*, .clear_all_button {
+    background-color: black;
+    visibility: hidden;
+}
+
+// -------------------------- Search hints ----------------------------]
+
+.hints {
+    background-color: v.$base_color;
+    top: 5px;
+    position: relative;
+    max-width: 537px;
+    max-height: 300px;
+    left: 50%;
+    border: none;
+    height: fit-content;
+    transform: translateX(-50%);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-top: 5px;
+    z-index: 2;
+    visibility: hidden;
+    transition: visibility 0.1s height 0.1s;
+    transition-delay: 0.1s;
+    overflow-y: scroll;
+}
+
+.search_panel:has(.search:focus) + .hints {
+    visibility: visible;
+}
+
+
+.hints:has(.hintList:empty) {
+    visibility: hidden !important;
+
+}
+
+.line {
+    width: calc(100% - 40px);
+    position: relative;
+    margin: 0 20px;
+    border-top: 1px solid black;
+}
+
+.hintList {
+    position: relative;
+    left: 0;
+    list-style-type: none;
+    padding: 5px 20px;
+    margin: 0;
+}
+
+.hintListItem {
+    position: relative;
+    color: black;
+    height: 35px;
+    margin-bottom: 10px;
+
+}
+.hintListItem button {
+    text-align: left;
+    color: black;
+    background-color: v.$base_color;
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+
+.hintListItem button:hover {
+    background-color: #dadbe6;
+}
+
+.hintListItem button:focus {
+    outline: none;
+}
+

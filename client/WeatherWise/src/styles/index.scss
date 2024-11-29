@@ -1,12 +1,15 @@
+@use "./base/variables.scss" as v;
+
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 18px;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: v.$background;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -27,6 +30,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  scrollbar-color: v.$accent_color_2 transparent;
+  scrollbar-width: 10px;
   
 }
 
@@ -65,4 +70,22 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: v.$accent_color_2;
+
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: v.$accent_color_3;
 }

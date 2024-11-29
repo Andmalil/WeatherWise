@@ -20,10 +20,10 @@ type HintHandler struct {
 
 func (h HintHandler) ListHintsHandler(w http.ResponseWriter, r *http.Request) {
 	word := strings.TrimSpace(strings.ToLower(r.PathValue("word")))
-
 	hintList := h.HintService.HintList(word)
 
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	json.NewEncoder(w).Encode(hintList)
 }
 

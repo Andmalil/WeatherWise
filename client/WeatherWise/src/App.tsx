@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.scss'
+import './styles/pages/App.scss'
 import { Header } from "./compoents/Header.tsx"
 
 export function App() {
@@ -9,7 +9,8 @@ export function App() {
 
   return (
     <>
-      <Header />
+    <Header />
+    <main>
       <div>
         
         <a href="https://vite.dev" target="_blank">
@@ -31,6 +32,7 @@ export function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+    </main>
     </>
   )
 }

@@ -23,7 +23,7 @@ func (s HintService) HintList(Word string) []core.SearchHint {
 				suitableHints = append(suitableHints, s.Store[i])
 			}
 
-			if len(suitableHints) >= 30 {
+			if len(suitableHints) >= 40 {
 				break
 			}
 		}
