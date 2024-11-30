@@ -2,7 +2,7 @@ import {useRef, useState} from 'react'
 
 import styles from '../styles/components/Search.module.scss'
 
-import { Magnifier, ClearAll, ClearAllHovered } from '../assets/search_icons'
+import { Magnifier, MagnifierHovered, ClearAll, ClearAllHovered } from '../assets/search_icons'
 import { SearchHints } from './SearchHints'
 
 
@@ -25,6 +25,7 @@ export function Search() {
         <div className={ styles.search_panel }>
             <button className={ styles.button }>
                 <Magnifier className={ styles.magnifier_icon } />
+                <MagnifierHovered className= { styles.magnifier_hovered_icon } />
             </button>
             <input ref={searchRef} placeholder='Search' type="text" className={ styles.search } onChange={e => setSearchValue(e.target.value)} />
             <button onClick={ onClean } className={ styles.clear_all_button }>

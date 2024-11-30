@@ -54,11 +54,14 @@ export function SearchHints(props: hintsProps) {
     }, [props.word])
     
     return (
+        <>
+        
         <div className={ styles.hints }>
-            <div className={ styles.line }/>
+        <div className={ styles.line }/>
             <ul className={ styles.hintList }>
                 { HintList }
             </ul>
         </div>
+        </>
     )
 }

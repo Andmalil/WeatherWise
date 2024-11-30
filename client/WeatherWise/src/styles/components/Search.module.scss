@@ -4,7 +4,7 @@
     max-width: 537px;
     height: 30px;
     position: relative;
-    background-color: v.$base_color;
+    background-color: v.$base_color_1;
     // background: transparent;
     border: none;
     border-radius: 5px;
@@ -17,13 +17,19 @@
     transform: translate(-50%, -50%);
     display: flex;
     overflow: hidden;
-    z-index: 1;
+    z-index: 2;
+}
+.search_panel:hover {
+    background-color: v.$base_color_2;
 }
 
+.search_panel:has(.search:focus) {
+    background-color: v.$base_color_3;
+}
 
 .search_panel button {
     // background: transparent;
-    background-color: v.$base_color;
+    background-color: transparent;
     position: relative;
     height: 30px;
     width: 30px;
@@ -63,6 +69,22 @@
     transform: translateY(-50%);
 }
 
+.magnifier_icon {
+    visibility: visible;
+}
+
+.button:hover > .magnifier_icon {
+    visibility: hidden;
+}
+
+.magnifier_hovered_icon {
+    visibility: hidden;
+}
+
+.button:hover > .magnifier_hovered_icon {
+    visibility: visible;
+}
+
 .clear_all_button {
     display: block;
     right: 0;
@@ -75,7 +97,7 @@
 
 
 
-.clear_all_button:hover .clear_all_icon {
+.clear_all_button:hover > .clear_all_icon {
     visibility: hidden;
 }
 
@@ -83,13 +105,13 @@
     visibility: hidden;
 }
 
-.clear_all_button:hover .clear_all_hovered_icon {
+.clear_all_button:hover > .clear_all_hovered_icon {
     visibility: visible;
 }
 
 .search {
     // background: transparent;
-    background-color: v.$base_color;
+    background-color: transparent;
     color: black;
     border: none;
     height: 100%;
@@ -109,7 +131,7 @@
 // -------------------------- Search hints ----------------------------]
 
 .hints {
-    background-color: v.$base_color;
+    background-color: v.$base_color_3;
     top: 5px;
     position: relative;
     max-width: 537px;
@@ -121,14 +143,15 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     padding-top: 5px;
-    z-index: 2;
+    z-index: 1;
     visibility: hidden;
-    transition: visibility 0.1s height 0.1s;
-    transition-delay: 0.1s;
+    
     overflow-y: scroll;
 }
 
 .search_panel:has(.search:focus) + .hints {
+    transition: visibility 0.1s;
+    transition-delay: 0.1s;
     visibility: visible;
 }
 
@@ -140,9 +163,11 @@
 
 .line {
     width: calc(100% - 40px);
-    position: relative;
+    position: sticky;
+    top: 0px;
     margin: 0 20px;
     border-top: 1px solid black;
+    z-index: 2;
 }
 
 .hintList {
@@ -163,7 +188,7 @@
 .hintListItem button {
     text-align: left;
     color: black;
-    background-color: v.$base_color;
+    background-color: v.$base_color_3;
     border: none;
     width: 100%;
     height: 100%;

@@ -9,6 +9,13 @@ export const Magnifier = (props: SVGProps<SVGSVGElement>) => (
     </svg>
 )
 
+export const MagnifierHovered = (props: SVGProps<SVGSVGElement>) => (
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" {...props}>
+        <path d="M11.7,10.3c2.1-2.9,1.5-7-1.4-9.1S3.3-.3,1.2,2.6s-1.5,7,1.4,9.1c2.3,1.7,5.4,1.7,7.7,0h.1c0,.1,3.8,3.9,3.8,3.9.4.4,1,.4,1.4,0s.4-1,0-1.4l-3.8-3.9q0,0,0,0h0ZM12,6.5c0,3-2.5,5.5-5.5,5.5S1,9.5,1,6.5,3.5,1,6.5,1s5.5,2.5,5.5,5.5"/>
+        <circle cx="6.5" cy="6.5" r="4.1"/>
+    </svg>
+)
+
 export const ClearAll = (props: SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" {...props}>
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
