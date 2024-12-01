@@ -14,7 +14,7 @@ export async function getSearchHints(word: string): Promise<any> {
             }
             
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
         return []
 }

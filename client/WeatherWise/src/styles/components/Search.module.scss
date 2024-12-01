@@ -5,7 +5,6 @@
     height: 30px;
     position: relative;
     background-color: v.$base_color_1;
-    // background: transparent;
     border: none;
     border-radius: 5px;
     top: 50%;
@@ -19,6 +18,17 @@
     overflow: hidden;
     z-index: 2;
 }
+@media (max-width: 577px) {
+    .search_panel {
+        width: calc(100% - 40px);
+    }
+
+    .hints {
+        width: calc(100% - 40px);
+    }
+    
+}
+
 .search_panel:hover {
     background-color: v.$base_color_2;
 }
@@ -28,7 +38,6 @@
 }
 
 .search_panel button {
-    // background: transparent;
     background-color: transparent;
     position: relative;
     height: 30px;
@@ -110,7 +119,6 @@
 }
 
 .search {
-    // background: transparent;
     background-color: transparent;
     color: black;
     border: none;
@@ -154,7 +162,9 @@
     transition-delay: 0.1s;
     visibility: visible;
 }
-
+.hints:hover {
+    visibility: visible;
+}
 
 .hints:has(.hintList:empty) {
     visibility: hidden !important;

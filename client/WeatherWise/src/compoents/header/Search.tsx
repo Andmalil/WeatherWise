@@ -1,8 +1,8 @@
 import {useRef, useState} from 'react'
 
-import styles from '../styles/components/Search.module.scss'
+import styles from '../../styles/components/Search.module.scss'
 
-import { Magnifier, MagnifierHovered, ClearAll, ClearAllHovered } from '../assets/search_icons'
+import { Magnifier, MagnifierHovered, ClearAll, ClearAllHovered } from '../../assets/search_icons'
 import { SearchHints } from './SearchHints'
 
 

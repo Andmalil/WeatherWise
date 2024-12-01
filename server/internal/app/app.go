@@ -7,13 +7,11 @@ import (
 
 	"github.com/lpernett/godotenv"
 
-	"github.com/Andmalil/WeatherWise/assets"
 	"github.com/Andmalil/WeatherWise/internal/middleware"
 	"github.com/Andmalil/WeatherWise/internal/server"
 	"github.com/Andmalil/WeatherWise/internal/service"
 	"github.com/Andmalil/WeatherWise/internal/store/repository"
 	"github.com/Andmalil/WeatherWise/internal/transport/rest"
-	"github.com/Andmalil/WeatherWise/templates"
 )
 
 func Run() {
@@ -38,13 +36,9 @@ func Run() {
 
 	hintHandler := rest.HintHandler{HintService: hintService}
 
-	homePage := rest.HomePage{Template: templates.TemplateFiles}
-	server.GET("/", homePage.Home)
-
 	server.GET("/citysearch/{word}", hintHandler.ListHintsHandler)
 	server.GET("/search/{id}", hintHandler.GetCityCurrentWeather)
 	server.UseMiddleware(middleware.LoggingMiddleware)
-	server.StaticFiles("/assets/", assets.StaticFiles)
 
 	err = server.ListenAndServe()
 	if err != nil {
