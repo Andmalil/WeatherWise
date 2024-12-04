@@ -7,23 +7,23 @@ export const ClearDayLight = (props: SVGProps<SVGSVGElement>) => (
     <path fill="url(#b1)" d="M47.15 72.38c13.934 0 25.23-11.296 25.23-25.23 0-13.934-11.296-25.23-25.23-25.23-13.934 0-25.23 11.296-25.23 25.23 0 13.934 11.296 25.23 25.23 25.23Z"/>
     <defs>
       <linearGradient id="a1" x1="47.15" x2="47.15" y1="0" y2="94.3" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#F39E1B"/>
-        <stop offset="1" stop-color="#FF8D16"/>
+        <stop stopColor="#F39E1B"/>
+        <stop offset="1" stopColor="#FF8D16"/>
       </linearGradient>
       <linearGradient id="b1" x1="47.15" x2="47.15" y1="21.91" y2="72.38" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#FCCA25"/>
-        <stop offset="1" stop-color="#FFC21E"/>
+        <stop stopColor="#FCCA25"/>
+        <stop offset="1" stopColor="#FFC21E"/>
       </linearGradient>
     </defs>
   </svg>
 )
 
 export const PartlyCloudDayLight = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
   <path fill="url(#a2)" d="m75.988 52 11.1-11.1-11.1-11.1V14.1h-15.7L49.188 3l-11.1 11.1h-15.69v15.7l-11.1 11.1 11.1 11.1v15.69h15.69l11.1 11.1 11.1-11.1h15.7V52Z"/>
   <path fill="#C6710C" d="M49.188 62.32c11.2 0 20.28-9.08 20.28-20.28 0-11.2-9.08-20.28-20.28-20.28-11.2 0-20.28 9.08-20.28 20.28 0 11.2 9.08 20.28 20.28 20.28Z"/>
   <path fill="url(#b2)" d="M49.188 61.18c11.2 0 20.28-9.08 20.28-20.28 0-11.2-9.08-20.28-20.28-20.28-11.2 0-20.28 9.08-20.28 20.28 0 11.2 9.08 20.28 20.28 20.28Z"/>
-  <path fill="#BCBCBC" d="M70.658 57a24.16 24.16 0 0 0-45-6.95 20.58 20.58 0 0 0 1.88 41.07h42.52a17.07 17.07 0 0 0 .64-34.12h-.04Z"/>
+  <path fill="#D9D9D9" d="M70.658 57a24.16 24.16 0 0 0-45-6.95 20.58 20.58 0 0 0 1.88 41.07h42.52a17.07 17.07 0 0 0 .64-34.12h-.04Z"/>
   <path fill="url(#c2)" d="M70.658 55.25a24.16 24.16 0 0 0-45-6.95 20.58 20.58 0 0 0 1.88 41.07h42.52a17.07 17.07 0 0 0 .64-34.12h-.04Z"/>
   <defs>
     <linearGradient id="a2" x1="49.188" x2="49.188" y1="3" y2="78.79" gradientUnits="userSpaceOnUse">
@@ -40,12 +40,14 @@ export const PartlyCloudDayLight = (props: SVGProps<SVGSVGElement>) => (
     </linearGradient>
   </defs>
 </svg>
+
+
 )
 
 export const WindyLight = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
-  <path fill="#BCBCBC" d="M70.768 25.381a24.16 24.16 0 0 0-45-7 20.58 20.58 0 0 0 1.88 41.07h42.51a17.07 17.07 0 0 0 .65-34.12l-.04.05Z"/>
-  <path fill="url(#a3)" d="M70.769 23.681a24.161 24.161 0 0 0-45-7 20.58 20.58 0 0 0 1.88 41.08h42.51a17.07 17.07 0 0 0 .65-34.12l-.04.04Z"/>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
+  <path fill="#D9D9D9" d="M70.768 25.381a24.16 24.16 0 0 0-45-7 20.58 20.58 0 0 0 1.88 41.07h42.51a17.07 17.07 0 0 0 .65-34.12l-.04.05Z"/>
+  <path fill="url(#a3)" stroke="#D9D9D9" d="m70.317 23.734.073.388.395.018a16.57 16.57 0 0 1-.629 33.121H27.647a20.08 20.08 0 0 1-1.834-40.082l.268-.024.127-.236a23.66 23.66 0 0 1 37.278-5.756c3.515 3.404 5.926 7.77 6.831 12.57Z"/>
   <path fill="url(#b3)" d="M62.508 58.421h-36.79v-8h36.79a4.22 4.22 0 0 0 0-8.44h-4.27v-8h4.27a12.22 12.22 0 0 1 0 24.44Z"/>
   <path fill="url(#c3)" d="M62.508 90.461h-4.27v-8h4.27a4.22 4.22 0 1 0 0-8.44h-43.26v-8h43.26a12.22 12.22 0 0 1 0 24.44Z"/>
   <defs>
@@ -63,14 +65,13 @@ export const WindyLight = (props: SVGProps<SVGSVGElement>) => (
     </linearGradient>
   </defs>
 </svg>
-
 )
 
 export const StormLight = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
   <path fill="url(#a4)" d="M41.618 91.121v-17.9h-10.89v-22.95h33.85l-13.62 14.39h13.62l-22.96 26.46Z"/>
-  <path fill="#BCBCBC" d="M71.658 25.381a24.16 24.16 0 0 0-45-6.95 20.58 20.58 0 0 0 1.84 41.05h42.52a17.07 17.07 0 0 0 .64-34.12v.02Z"/>
-  <path fill="url(#b4)" d="M71.658 23.681a24.16 24.16 0 0 0-45-7 20.58 20.58 0 0 0 1.87 41.07h42.52a17.07 17.07 0 0 0 .64-34.12l-.03.05Z"/>
+  <path fill="#D9D9D9" d="M71.658 25.381a24.16 24.16 0 0 0-45-6.95 20.58 20.58 0 0 0 1.84 41.05h42.52a17.07 17.07 0 0 0 .64-34.12v.02Z"/>
+  <path fill="url(#b4)" stroke="#D9D9D9" d="m71.197 23.724.073.388.395.018a16.57 16.57 0 0 1-.62 33.121H28.53a20.08 20.08 0 0 1-1.824-40.072l.266-.025.127-.235a23.66 23.66 0 0 1 37.278-5.756c3.515 3.404 5.915 7.76 6.82 12.56Z"/>
   <defs>
     <linearGradient id="a4" x1="47.648" x2="47.648" y1="50.271" y2="91.121" gradientUnits="userSpaceOnUse">
       <stop stop-color="#F39E1B"/>
@@ -82,6 +83,7 @@ export const StormLight = (props: SVGProps<SVGSVGElement>) => (
     </linearGradient>
   </defs>
 </svg>
+
 )
 
 export const ClearNightLight = (props: SVGProps<SVGSVGElement>) => (
@@ -98,9 +100,9 @@ export const ClearNightLight = (props: SVGProps<SVGSVGElement>) => (
 )
 
 export const PartlyCloudyNightLight = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
   <path fill="url(#a6)" d="M56.83 3A36.81 36.81 0 0 1 11 47.33a36.81 36.81 0 0 0 72.52-8.94A36.82 36.82 0 0 0 56.83 3Z"/>
-  <path fill="#BCBCBC" d="M69.52 60.2a22.19 22.19 0 0 0-21.8-18.09 22.18 22.18 0 0 0-19.55 11.7A18.89 18.89 0 0 0 11 72.63a18.9 18.9 0 0 0 18.89 18.9h39A15.68 15.68 0 0 0 84.6 75.85 15.67 15.67 0 0 0 69.52 60.2Z"/>
+  <path fill="#D9D9D9" d="M69.52 60.2a22.19 22.19 0 0 0-21.8-18.09 22.18 22.18 0 0 0-19.55 11.7A18.89 18.89 0 0 0 11 72.63a18.9 18.9 0 0 0 18.89 18.9h39A15.68 15.68 0 0 0 84.6 75.85 15.67 15.67 0 0 0 69.52 60.2Z"/>
   <path fill="url(#b6)" d="M69.52 58.64a22.19 22.19 0 0 0-21.8-18.08 22.18 22.18 0 0 0-19.55 11.7A18.89 18.89 0 0 0 11 71.11a18.9 18.9 0 0 0 18.89 18.9h39A15.678 15.678 0 0 0 84.6 74.29a15.67 15.67 0 0 0-15.08-15.65Z"/>
   <defs>
     <linearGradient id="a6" x1="47.26" x2="47.26" y1="3" y2="75.2" gradientUnits="userSpaceOnUse">
@@ -117,14 +119,14 @@ export const PartlyCloudyNightLight = (props: SVGProps<SVGSVGElement>) => (
 )
 
 export const CloudyLight = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
-  <path fill="#BCBCBC" d="M70.767 37.344a24.16 24.16 0 0 0-45-6.95 20.58 20.58 0 0 0 1.8 41.08h42.51a17.07 17.07 0 0 0 .65-34.12l.04-.01Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
+  <path fill="#D9D9D9" d="M70.767 37.344a24.16 24.16 0 0 0-45-6.95 20.58 20.58 0 0 0 1.8 41.08h42.51a17.07 17.07 0 0 0 .65-34.12l.04-.01Z"/>
   <path fill="url(#a7)" d="M70.767 35.644a24.16 24.16 0 0 0-45-6.95 20.58 20.58 0 0 0 1.88 41.07h42.51a17.07 17.07 0 0 0 .65-34.12h-.04Z"/>
-  <path fill="#BCBCBC" d="M62.057 57.264a15.31 15.31 0 0 0-28.54-4.4 13.013 13.013 0 1 0 1.19 26h26.94a10.813 10.813 0 0 0 .41-21.62v.02Z"/>
-  <path fill="url(#b7)" d="M62.057 56.184a15.31 15.31 0 0 0-28.54-4.4 13.013 13.013 0 1 0 1.19 26h26.94a10.813 10.813 0 0 0 .41-21.62v.02Z"/>
+  <path fill="#D9D9D9" d="M62.057 57.264a15.31 15.31 0 0 0-28.54-4.4 13.013 13.013 0 1 0 1.19 26h26.94a10.813 10.813 0 0 0 .41-21.62v.02Z"/>
+  <path fill="url(#b7)" stroke="#D9D9D9" stroke-width=".5" d="m61.812 56.21.037.2.203.004a10.562 10.562 0 1 1-.4 21.12H34.696a12.764 12.764 0 1 1-1.167-25.5l.141-.007.067-.125a15.06 15.06 0 0 1 23.746-3.71 15.004 15.004 0 0 1 4.329 8.018Z"/>
   <defs>
     <linearGradient id="a7" x1="47.067" x2="47.067" y1="15.944" y2="69.764" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
+      <stop stop-color="#BBB9B9"/>
       <stop offset="1" stop-color="#DBD9DA"/>
     </linearGradient>
     <linearGradient id="b7" x1="47.067" x2="47.067" y1="43.704" y2="77.804" gradientUnits="userSpaceOnUse">
@@ -134,10 +136,11 @@ export const CloudyLight = (props: SVGProps<SVGSVGElement>) => (
   </defs>
 </svg>
 
+
 )
 
 export const FogLight = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
   <path fill="url(#a8)" d="M38.22 61.8a5.65 5.65 0 1 0 0-11.3 5.65 5.65 0 0 0 0 11.3Z"/>
   <path fill="url(#b8)" d="M21.33 77.24a4.31 4.31 0 1 0 0-8.62 4.31 4.31 0 0 0 0 8.62Z"/>
   <path fill="url(#c8)" d="M21.33 60.46a4.31 4.31 0 1 0 0-8.62 4.31 4.31 0 0 0 0 8.62Z"/>
@@ -164,100 +167,100 @@ export const FogLight = (props: SVGProps<SVGSVGElement>) => (
   <path fill="url(#x8)" d="M54.87 44.5a5.65 5.65 0 1 0 0-11.3 5.65 5.65 0 0 0 0 11.3Z"/>
   <defs>
     <linearGradient id="a8" x1="38.22" x2="38.22" y1="50.5" y2="61.8" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="b8" x1="21.33" x2="21.33" y1="68.61" y2="77.24" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="b8" x1="21.33" x2="21.33" y1="68.62" y2="77.24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="c8" x1="21.33" x2="21.33" y1="51.84" y2="60.47" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="c8" x1="21.33" x2="21.33" y1="51.84" y2="60.46" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="d8" x1="21.33" x2="21.33" y1="35.06" y2="43.69" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="d8" x1="21.33" x2="21.33" y1="35.07" y2="43.69" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
     <linearGradient id="e8" x1="9" x2="9" y1="36.85" y2="40.85" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
     <linearGradient id="f8" x1="9" x2="9" y1="54.15" y2="58.15" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
     <linearGradient id="g8" x1="38.22" x2="38.22" y1="83.48" y2="87.48" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="h8" x1="38.22" x2="38.22" y1="8.01" y2="12" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="h8" x1="38.22" x2="38.22" y1="8" y2="12" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
     <linearGradient id="i8" x1="55.11" x2="55.11" y1="83.48" y2="87.48" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="j8" x1="55.11" x2="55.11" y1="8.01" y2="12" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="j8" x1="55.11" x2="55.11" y1="8" y2="12" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
     <linearGradient id="k8" x1="84.85" x2="84.85" y1="36.85" y2="40.85" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
     <linearGradient id="l8" x1="84.85" x2="84.85" y1="54.15" y2="58.15" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="m8" x1="21.33" x2="21.33" y1="18.29" y2="26.92" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="m8" x1="21.33" x2="21.33" y1="18.29" y2="26.91" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="n8" x1="38.22" x2="38.22" y1="68.61" y2="77.24" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="n8" x1="38.22" x2="38.22" y1="68.62" y2="77.24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="o8" x1="38.22" x2="38.22" y1="18.29" y2="26.92" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="o8" x1="38.22" x2="38.22" y1="18.29" y2="26.91" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="p8" x1="55.11" x2="55.11" y1="68.61" y2="77.24" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="p8" x1="55.11" x2="55.11" y1="68.62" y2="77.24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="q8" x1="55.11" x2="55.11" y1="18.29" y2="26.92" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="q8" x1="55.11" x2="55.11" y1="18.29" y2="26.91" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="r8" x1="72.01" x2="72.01" y1="68.61" y2="77.24" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="r8" x1="72.01" x2="72.01" y1="68.62" y2="77.24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="s8" x1="72.01" x2="72.01" y1="51.84" y2="60.47" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="s8" x1="72.01" x2="72.01" y1="51.84" y2="60.46" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="t8" x1="72.01" x2="72.01" y1="34.54" y2="43.17" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="t8" x1="72.01" x2="72.01" y1="34.54" y2="43.16" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="u8" x1="72.01" x2="72.01" y1="18.29" y2="26.92" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="u8" x1="72.01" x2="72.01" y1="18.29" y2="26.91" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
     <linearGradient id="v8" x1="54.87" x2="54.87" y1="50.5" y2="61.8" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="w8" x1="38.22" x2="38.22" y1="33.21" y2="44.5" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="w8" x1="38.22" x2="38.22" y1="33.2" y2="44.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
-    <linearGradient id="x8" x1="54.87" x2="54.87" y1="33.21" y2="44.5" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E5E6E6"/>
-      <stop offset="1" stop-color="#DBD9DA"/>
+    <linearGradient id="x8" x1="54.87" x2="54.87" y1="33.2" y2="44.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBB9B9"/>
+      <stop offset="1" stop-color="#777"/>
     </linearGradient>
   </defs>
 </svg>
@@ -265,10 +268,10 @@ export const FogLight = (props: SVGProps<SVGSVGElement>) => (
 )
 
 export const RainLight = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
   <path fill="url(#a9)" d="M40.762 65.667a6.76 6.76 0 1 1-13.52 0c0-2.63 3.35-6.25 5.33-8.16a2.07 2.07 0 0 1 2.87 0c2.03 1.92 5.32 5.54 5.32 8.16Z"/>
-  <path fill="#BCBCBC" d="M71.282 30.547a24.34 24.34 0 0 0-45.37-7 20.73 20.73 0 0 0 1.89 41.37h42.83a17.19 17.19 0 0 0 .65-34.37Z"/>
-  <path fill="url(#b9)" d="M71.282 28.837a24.34 24.34 0 0 0-45.37-7 20.73 20.73 0 0 0 1.89 41.38h42.83a17.19 17.19 0 0 0 .65-34.37v-.01Z"/>
+  <path fill="#D9D9D9" d="M71.282 30.547a24.34 24.34 0 0 0-45.37-7 20.73 20.73 0 0 0 1.89 41.37h42.83a17.19 17.19 0 0 0 .65-34.37Z"/>
+  <path fill="url(#b9)" stroke="#D9D9D9" d="m25.956 22.335.269-.024.128-.238a23.84 23.84 0 0 1 44.429 6.81v.447l.483.017a16.69 16.69 0 0 1-.631 33.37H27.8a20.23 20.23 0 0 1-1.844-40.382Z"/>
   <path fill="url(#c9)" d="M54.212 52.387a6.76 6.76 0 0 1-13.52 0c0-2.63 3.34-6.25 5.33-8.17a2.06 2.06 0 0 1 2.86 0c1.98 1.92 5.33 5.54 5.33 8.17Z"/>
   <path fill="url(#d9)" d="M54.212 79.047a6.76 6.76 0 0 1-13.52 0c0-2.63 3.34-6.25 5.33-8.17a2.06 2.06 0 0 1 2.86 0c1.98 1.92 5.33 5.54 5.33 8.17Z"/>
   <path fill="url(#e9)" d="M67.652 65.667a6.76 6.76 0 1 1-13.52 0c0-2.63 3.34-6.25 5.33-8.16a2.06 2.06 0 0 1 2.86 0c1.98 1.92 5.33 5.54 5.33 8.16Z"/>
@@ -278,8 +281,8 @@ export const RainLight = (props: SVGProps<SVGSVGElement>) => (
       <stop offset="1" stop-color="#7E8AC1"/>
     </linearGradient>
     <linearGradient id="b9" x1="47.452" x2="47.452" y1="8.997" y2="63.207" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E9E5E4"/>
-      <stop offset="1" stop-color="#F5F2F6"/>
+      <stop stop-color="#F1F1F1"/>
+      <stop offset="1" stop-color="#F3F8FD"/>
     </linearGradient>
     <linearGradient id="c9" x1="47.452" x2="47.452" y1="43.647" y2="59.147" gradientUnits="userSpaceOnUse">
       <stop stop-color="#828DC4"/>
@@ -296,13 +299,14 @@ export const RainLight = (props: SVGProps<SVGSVGElement>) => (
   </defs>
 </svg>
 
+
 )
 
 export const SnowLight = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
   <path fill="url(#a10)" d="m43.237 64.592-9.56-9.56-9.56 9.56 9.56 9.56 9.56-9.56Z"/>
-  <path fill="#BCBCBC" d="M71.282 29.547a24.34 24.34 0 0 0-45.37-7 20.73 20.73 0 0 0 1.89 41.37h42.83a17.19 17.19 0 0 0 .65-34.37Z"/>
-  <path fill="url(#b10)" d="M71.282 27.837a24.34 24.34 0 0 0-45.37-7 20.73 20.73 0 0 0 1.89 41.38h42.83a17.19 17.19 0 0 0 .65-34.37v-.01Z"/>
+  <path fill="#D9D9D9" d="M71.282 29.547a24.34 24.34 0 0 0-45.37-7 20.73 20.73 0 0 0 1.89 41.37h42.83a17.19 17.19 0 0 0 .65-34.37Z"/>
+  <path fill="url(#b10)" stroke="#D9D9D9" d="m25.956 21.335.269-.024.128-.238a23.84 23.84 0 0 1 44.429 6.81v.447l.483.017a16.69 16.69 0 0 1-.631 33.37H27.8a20.23 20.23 0 0 1-1.844-40.382Z"/>
   <path fill="url(#c10)" d="m57.008 51.225-9.56-9.56-9.56 9.56 9.56 9.56 9.56-9.56Z"/>
   <path fill="url(#d10)" d="m56.597 77.946-9.56-9.56-9.56 9.56 9.56 9.56 9.56-9.56Z"/>
   <path fill="url(#e10)" d="m70.36 64.586-9.56-9.56-9.56 9.56 9.56 9.56 9.56-9.56Z"/>
@@ -312,8 +316,8 @@ export const SnowLight = (props: SVGProps<SVGSVGElement>) => (
       <stop offset="1" stop-color="#FAFFFF"/>
     </linearGradient>
     <linearGradient id="b10" x1="47.452" x2="47.452" y1="7.997" y2="62.207" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E9E5E4"/>
-      <stop offset="1" stop-color="#F5F2F6"/>
+      <stop stop-color="#F1F1F1"/>
+      <stop offset="1" stop-color="#F3F8FD"/>
     </linearGradient>
     <linearGradient id="c10" x1="52.221" x2="42.66" y1="46.438" y2="55.998" gradientUnits="userSpaceOnUse">
       <stop stop-color="#FFFEFE"/>
@@ -329,14 +333,13 @@ export const SnowLight = (props: SVGProps<SVGSVGElement>) => (
     </linearGradient>
   </defs>
 </svg>
-
 )
 
 export const SleetLight = (props: SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 95 95" {...props}>
   <path fill="url(#a11)" d="m43.246 65.579-9.56-9.56-9.56 9.56 9.56 9.56 9.56-9.56Z"/>
-  <path fill="#BCBCBC" d="M71.282 30.547a24.34 24.34 0 0 0-45.37-7 20.73 20.73 0 0 0 1.9 41.38h42.82a17.19 17.19 0 0 0 .65-34.37v-.01Z"/>
-  <path fill="url(#b11)" d="M71.282 28.837a24.34 24.34 0 0 0-45.37-7 20.73 20.73 0 0 0 1.9 41.38h42.82a17.19 17.19 0 0 0 .65-34.37v-.01Z"/>
+  <path fill="#D9D9D9" d="M71.282 30.547a24.34 24.34 0 0 0-45.37-7 20.73 20.73 0 0 0 1.9 41.38h42.82a17.19 17.19 0 0 0 .65-34.37v-.01Z"/>
+  <path fill="url(#b11)" stroke="#D9D9D9" d="m25.956 22.335.27-.024.127-.238a23.84 23.84 0 0 1 44.43 6.81v.447l.483.017a16.69 16.69 0 0 1-.632 33.37H27.81a20.23 20.23 0 0 1-1.854-40.382Z"/>
   <path fill="url(#c11)" d="m70.377 65.58-9.56-9.56-9.56 9.56 9.56 9.56 9.56-9.56Z"/>
   <path fill="url(#d11)" d="M54.212 52.367a6.76 6.76 0 0 1-13.52 0c0-2.63 3.35-6.25 5.33-8.17a2.06 2.06 0 0 1 2.86 0c1.99 1.94 5.33 5.56 5.33 8.17Z"/>
   <path fill="url(#e11)" d="M54.212 79.037a6.76 6.76 0 0 1-13.52 0c0-2.62 3.35-6.24 5.33-8.16a2.06 2.06 0 0 1 2.86 0c1.99 1.92 5.33 5.54 5.33 8.16Z"/>
@@ -346,8 +349,8 @@ export const SleetLight = (props: SVGProps<SVGSVGElement>) => (
       <stop offset="1" stop-color="#FAFFFF"/>
     </linearGradient>
     <linearGradient id="b11" x1="47.452" x2="47.452" y1="8.997" y2="63.207" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E9E5E4"/>
-      <stop offset="1" stop-color="#F5F2F6"/>
+      <stop stop-color="#F1F1F1"/>
+      <stop offset="1" stop-color="#F3F8FD"/>
     </linearGradient>
     <linearGradient id="c11" x1="60.817" x2="60.817" y1="56.02" y2="75.14" gradientUnits="userSpaceOnUse">
       <stop stop-color="#FFFEFE"/>
@@ -363,6 +366,7 @@ export const SleetLight = (props: SVGProps<SVGSVGElement>) => (
     </linearGradient>
   </defs>
 </svg>
+
 
 )
 

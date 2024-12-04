@@ -11,13 +11,13 @@ interface hintsProps {
 export function SearchHints(props: hintsProps) {
     const [cities, setCities] = useState<{ID: number, Name: string, NameASCII: string, Lat: number, Lng: number, Country: string}[]>([])
 
-    const onCityNameClick = (name: string) => {
-        console.log(name)
-        props.setInputValue(name)
+    const onCityNameClick = (name: string, country: string, id: number) => {
+        console.log(id)
+        props.setInputValue(`${name} (${country})`)
     }
     const HintListLayout = cities.map((city) => 
         <li key={ city.ID } className={ styles.hintListItem }>
-            <button onClick={ () => onCityNameClick(city.Name) }>{ city.Name } ({ city.Country })</button>
+            <button onClick={ () => onCityNameClick(city.Name, city.Country, city.ID) }>{ city.Name } ({ city.Country })</button>
             </li>
     )
 

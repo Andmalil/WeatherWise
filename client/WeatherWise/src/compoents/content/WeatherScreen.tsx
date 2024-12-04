@@ -1,23 +1,41 @@
 import styles from "../../styles/components/Content.module.scss"
 
-import { ClearDayLight, PartlyCloudDayLight, WindyLight, StormLight, ClearNightLight, PartlyCloudyNightLight, CloudyLight, FogLight, RainLight, SnowLight, SleetLight, DropLight } from "../../assets/weather_icons"
+import { ClearDayLight } from "../../assets/weather_icons"
+import { useEffect, useState } from "react"
+
+import clear_day from "/light_theme_icons/clear_day.svg"
 
 
 export function WeatherScreen() {
+    const [status, setStatus] = useState("Clear")
+    const [temperature, setTemperature] = useState(28)
+    const [feelLike, setFeelLike] = useState(37)
+    const [currentCity, setCurrentCity] = useState("Moscow")
+
+    var [currentTime, setCurrentTime] = useState(new Date())
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentTime(new Date())
+        }, 5000)
+        return () => clearInterval(intervalId)
+    }, [])
+    const weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+    const now = new Date()
+    
     return (
         <div className={`${styles.weather_widget} ${styles.weather_screen}`}>
-            <ClearDayLight className={ styles.sunny_icon } />
-            <PartlyCloudDayLight className={ styles.sunny_icon } />
-            <WindyLight className={ styles.sunny_icon } />
-            <StormLight className={ styles.sunny_icon } />
-            <ClearNightLight className={ styles.sunny_icon } />
-            <PartlyCloudyNightLight className={ styles.sunny_icon } />
-            <CloudyLight className={ styles.sunny_icon } />
-            <FogLight className={ styles.sunny_icon } />
-            <RainLight className={ styles.sunny_icon } />
-            <SnowLight className={ styles.sunny_icon } />
-            <SleetLight className={ styles.sunny_icon } />
-            <DropLight className={ styles.sunny_icon } />
+            <div className={ styles.current_weather }>
+            <div className={ styles.status }>
+                <img className={ styles.weather_icon } src={ clear_day }/>
+                <div>{ status }</div>
+            </div>
+            <p className={ styles.temerature }>{ temperature }°</p>
+            <p className={ styles.feel_like }>feel like { feelLike }°</p>
+            </div>
+            <div className={ styles.time_and_city }>
+                <p className={ styles.city_name }>{ currentCity }</p>
+                <p className={ styles.current_time }>{ weekdays[now.getDay()] } { currentTime.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"}) }</p>
+            </div>
         </div>
     )
 }

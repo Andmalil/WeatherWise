@@ -4,6 +4,7 @@ import styles from '../../styles/components/Search.module.scss'
 
 import { Magnifier, MagnifierHovered, ClearAll, ClearAllHovered } from '../../assets/search_icons'
 import { SearchHints } from './SearchHints'
+import { getWeather } from '../../api/SearchAPI'
 
 
 export function Search() {
@@ -14,6 +15,11 @@ export function Search() {
         setSearchValue(value)
         searchRef.current.focus()
     }
+    const onSearch = async () => {
+        const w = await getWeather(18)
+        console.log(w)
+    }
+
     const onClean = () => {
         if (searchRef.current != null) {
             setInputValue("")

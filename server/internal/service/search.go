@@ -18,7 +18,9 @@ func (s HintService) HintList(Word string) []core.SearchHint {
 
 	if len(s.Store) > 0 {
 		for i := range s.Store {
-			if strings.Index(strings.ToLower(s.Store[i].Name), Word) == 0 || strings.Index(strings.ToLower(s.Store[i].NameASCII), Word) == 0 {
+			var name_formatted1 = strings.ToLower(s.Store[i].Name)
+			var name_formatted2 = strings.ToLower(s.Store[i].NameASCII + "(" + s.Store[i].Country + ")")
+			if strings.Index(name_formatted1, Word) == 0 || strings.Index(name_formatted2, strings.ReplaceAll(Word, " ", "")) == 0 || strings.Index(strings.ToLower(s.Store[i].NameASCII), Word) == 0 {
 
 				suitableHints = append(suitableHints, s.Store[i])
 			}
