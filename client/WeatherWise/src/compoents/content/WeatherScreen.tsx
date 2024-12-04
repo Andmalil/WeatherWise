@@ -1,6 +1,5 @@
 import styles from "../../styles/components/Content.module.scss"
 
-import { ClearDayLight } from "../../assets/weather_icons"
 import { useEffect, useState } from "react"
 
 import clear_day from "/light_theme_icons/clear_day.svg"
@@ -16,7 +15,29 @@ export function WeatherScreen() {
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentTime(new Date())
-        }, 5000)
+            if (status == "Clear") {
+                setStatus("Snow")
+            } else {
+                setStatus("Clear")
+            }
+            
+            if (temperature == 28) {
+                setTemperature(3)
+            } else {
+                setTemperature(28)
+            }
+            if (feelLike == 37) {
+                setFeelLike(2)
+            } else {
+                setFeelLike(37)
+            }
+
+            if (currentCity == "Moscow") {
+                setCurrentCity("Los angeles")
+            } else {
+                setCurrentCity("Moscow")
+            }
+        }, 1000)
         return () => clearInterval(intervalId)
     }, [])
     const weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
