@@ -57,7 +57,8 @@
     background-color: v.$background;
     border-radius: 10px;
     width: 100%;
-    aspect-ratio: 1/1;
+    height: 120px;
+    // aspect-ratio: 1/1;
    
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(-4px -4px 4px rgba(255, 255, 255, 0.75))
     
@@ -66,14 +67,13 @@
 .weather_screen {
     color: v.$Light_text_gray;
 
-    grid-column: 1/5;
+    grid-column: 1/3;
     grid-row: 1;
 }
 .current_weather {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    // margin-left: 25px;
     left: 25px;
     height: 138px;
     width: 100%;
@@ -103,17 +103,17 @@
     font-size: 8rem;
 }
 
-.feel_like {
-    position: relative;
-    margin-left: -46px;
-    font-size: 1.5rem;
-    top: 100%;
-    transform: translateY(-100%);
+// .feel_like {
+//     position: relative;
+//     margin-left: -46px;
+//     font-size: 1.5rem;
+//     top: 100%;
+//     transform: translateY(-100%);
     
-}
+// }
 
 .weather_chart {
-    grid-column: 1/5;
+    grid-column: 1/3;
     grid-row: 2;
 }
 
@@ -174,3 +174,31 @@
     top: 50%;
     transform: translateY(-50%);
 }
+
+.mini_widget_text {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+}
+.mini_widget_title {
+    color: #87858F;
+    font-family: 'Inter';
+    font-size: 1rem;
+}
+
+.mini_widget_value {
+    font-family: 'Inter', serif;
+    font-weight: bold;
+    color: #87858F;
+    font-size: 1.25rem;
+}
+
+.mini_widget_chart {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-45%);
+
+}
+

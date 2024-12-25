@@ -1,17 +1,70 @@
 import { WeatherScreen } from "./WeatherScreen"
-import { WeatherChart } from "./WeatherChart"
+import { WeatherChart } from "./ForecastChartWidget"
 import { WeatherWidgetMini } from "./WeatherWidgetMini"
 
+import { UVChart } from "./charts/UVChart"
+import { HumidityChart } from "./charts/HumidityChart"
+import { RealFeelChart } from "./charts/RealFeelChart"
+import { Compass } from "./charts/Compass"
+import { PressureChart } from "./charts/PressureChart"
+
 import styles from "../../styles/components/Content.module.scss"
+import { useContext } from "react"
+import { WeatherContext } from "../../context/weatherContext"
+import { WeatherContextType } from "../../@types/weather"
 
 export function Weather() {
+    const { forecasts, currentCity } = useContext(WeatherContext) as WeatherContextType
+
+    const uvIndex = forecasts[currentCity].uvLevel
+    var uvLevel = "Low"
+    if (uvIndex <= 2) {
+        uvLevel = "Low"
+    } else if (3 <= uvIndex && uvIndex <= 5) {
+        uvLevel = "Moderate"
+    } else if (6 <= uvIndex && uvIndex <= 7) {
+        uvLevel = "High"
+    } else if (8 <= uvIndex && uvIndex <= 10) {
+        uvLevel = "Very High"
+    } else {
+        uvLevel = "Extreme"
+    }
+
+    var windDirections: { [key: string]: string } = {
+        "N": "North", 
+        "NNE": "North-northeast",
+        "NE": "Northeast",
+        "ENE": "East-northeast",
+        "E": "East",
+        "ESE": "East-southeast",
+        "SE": "Southeast",
+        "SSE": "South-southeast",
+        "S": "South",
+        "SSW": "South-southwest",
+        "SW": "Southwest",
+        "WSW": "West-southWest",
+        "W": "West",
+        "WNW": "West-northwest",
+        "NW": "Northwest",
+        "NNW": "North-northwest"
+    }
+    
     return (
         <div className={ styles.weather }>
             <WeatherScreen />
             <WeatherChart />
             
-            { [1, 2, 3, 4, 5, 6, 7, 8].map((v) => {
-                return <WeatherWidgetMini key={ v } />
+            
+            { [{title: "UV", value: uvLevel, graphics: UVChart},
+            {title: "Humidity", value: `${forecasts[currentCity].humidity}%`, graphics: HumidityChart},
+            {title: "real feel", value: `${forecasts[currentCity].realFeel}°`, graphics: RealFeelChart},
+            {title: windDirections[forecasts[currentCity].windDirection], value: `${forecasts[currentCity].windSpeed}`, graphics: Compass},
+            {title: "Pressure", value: forecasts[currentCity].pressure.toString(), graphics: PressureChart},
+            {title: "UV", value: "Weak", graphics: UVChart},
+            {title: "UV", value: "Weak", graphics: UVChart},
+            {title: "UV", value: "Weak", graphics: UVChart}
+            ].map((g, index) => {
+                return <WeatherWidgetMini key={ index } { ...g } />
             }) }
         </div>
     )

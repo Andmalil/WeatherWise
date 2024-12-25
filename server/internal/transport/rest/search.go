@@ -31,12 +31,14 @@ func (h *HintHandler) GetCityCurrentWeather(w http.ResponseWriter, r *http.Reque
 	id := r.PathValue("id")
 
 	weather, err := h.HintService.CurrentWeather(id)
+
 	if err != nil {
 		log.Println("Failed to get current weather: ", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Internal Server Error"))
 	}
 
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(weather)
 }

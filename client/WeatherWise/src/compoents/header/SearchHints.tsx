@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import styles from "../../styles/components/Search.module.scss"
 
-import { getSearchHints } from "../../api/SearchAPI";
+import { getSearchHints, getWeather } from "../../api/SearchAPI";
+import { WeatherContextType } from "../../@types/weather";
+import { WeatherContext } from "../../context/weatherContext"
 // import { motion } from "framer-motion"
 interface hintsProps {
     word: string;
@@ -9,32 +11,27 @@ interface hintsProps {
 }
 
 export function SearchHints(props: hintsProps) {
-    const [cities, setCities] = useState<{ID: number, Name: string, NameASCII: string, Lat: number, Lng: number, Country: string}[]>([])
+    const { searchHints, saveSearchHints, forecasts, saveForecast, saveCurrentCity } = useContext(WeatherContext) as WeatherContextType
 
     const onCityNameClick = (name: string, country: string, id: number) => {
-        console.log(id)
         props.setInputValue(`${name} (${country})`)
+        getWeather(id, forecasts.length, saveForecast, saveCurrentCity)
     }
-    const HintListLayout = cities.map((city) => 
+    const HintListLayout = searchHints.map((city) => 
         <li key={ city.ID } className={ styles.hintListItem }>
             <button onClick={ () => onCityNameClick(city.Name, city.Country, city.ID) }>{ city.Name } ({ city.Country })</button>
-            </li>
+        </li>
     )
 
     useEffect(()=> {
-        const Hints = async () => {
-            const hintList = await getSearchHints(props.word)
-            setCities(hintList)
-        }
-        Hints()
-            
+        getSearchHints(props.word, saveSearchHints)
     }, [props.word])
     
     return (
         <div className={ styles.hints }>
         <div className={ styles.line }/>
             <ul className={ styles.hintList }>
-                { HintListLayout }
+                { HintListLayout.length> 0 ? HintListLayout : <p>Nothing is found</p> }
             </ul>
         </div>
     )

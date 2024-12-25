@@ -21,7 +21,7 @@ func (s *SQLHintStore) GetHints() ([]core.SearchHint, error) {
 	defer sq.Close()
 
 	var hints []core.SearchHint
-	rows := sq.MustQuery("SELECT id, name, name_ascii, lat, lng, country FROM city", nil, []byte{sqinn.ValInt, sqinn.ValText, sqinn.ValText, sqinn.ValDouble, sqinn.ValDouble, sqinn.ValText})
+	rows := sq.MustQuery("SELECT id, name, name_ascii, lat, lng, country FROM city ORDER BY population DESC, name ASC", nil, []byte{sqinn.ValInt, sqinn.ValText, sqinn.ValText, sqinn.ValDouble, sqinn.ValDouble, sqinn.ValText})
 	for _, row := range rows {
 		hints = append(hints, core.SearchHint{
 			ID:        row.Values[0].AsInt(),
