@@ -52,15 +52,15 @@
     outline: none;
 }
 
-.search_panel button svg {
-    fill: v.$light_icon_gray;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 16px;
-    height: 16px;
-    transform: translate(-50%, -50%);
-}
+// .search_panel button svg {
+//     fill: v.$light_icon_gray;
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     width: 16px;
+//     height: 16px;
+//     transform: translate(-50%, -50%);
+// }
 
 .search_panel .clear_all_button svg {
     fill: v.$light_icon_gray;
@@ -72,27 +72,27 @@
     transform: translate(-50%, -50%);
 }
 
-.button {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
+// .button {
+//     position: relative;
+//     top: 50%;
+//     transform: translateY(-50%);
+// }
 
-.magnifier_icon {
-    visibility: visible;
-}
+// .magnifier_icon {
+//     visibility: visible;
+// }
 
-.button:hover > .magnifier_icon {
-    visibility: hidden;
-}
+// .button:hover > .magnifier_icon {
+//     visibility: hidden;
+// }
 
-.magnifier_hovered_icon {
-    visibility: hidden;
-}
+// .magnifier_hovered_icon {
+//     visibility: hidden;
+// }
 
-.button:hover > .magnifier_hovered_icon {
-    visibility: visible;
-}
+// .button:hover > .magnifier_hovered_icon {
+//     visibility: visible;
+// }
 
 .clear_all_button {
     display: block;
@@ -125,6 +125,7 @@
     height: 100%;
     width: 100%;
     font-size: 17px;
+    margin-left: 10px;
 }
 
 .search:focus {
@@ -172,10 +173,10 @@
 }
 
 .line {
-    width: calc(100% - 40px);
+    width: calc(100% - 20px);
     position: sticky;
     top: 0px;
-    margin: 0 20px;
+    margin: 0 10px;
     border-top: 1px solid black;
     z-index: 2;
 }
@@ -184,7 +185,7 @@
     position: relative;
     left: 0;
     list-style-type: none;
-    padding: 5px 20px;
+    padding: 5px 10px;
     margin: 0;
 }
 

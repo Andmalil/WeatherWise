@@ -44,10 +44,10 @@
 
 .weather_widget {
     position: relative;
+    color: v.$Light_text_gray;
     background-color: v.$background;
     border-radius: 15px;
     width: 100%;
-    height: 158px;
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(-4px -4px 4px rgba(255, 255, 255, 0.75))
     
 }
@@ -65,7 +65,8 @@
 }
 
 .weather_screen {
-    color: v.$Light_text_gray;
+    
+    height: 158px;
 
     grid-column: 1/3;
     grid-row: 1;
@@ -103,18 +104,27 @@
     font-size: 8rem;
 }
 
-// .feel_like {
-//     position: relative;
-//     margin-left: -46px;
-//     font-size: 1.5rem;
-//     top: 100%;
-//     transform: translateY(-100%);
-    
-// }
-
 .weather_chart {
+    height: 300px;
+    overflow-x: scroll;
     grid-column: 1/3;
-    grid-row: 2;
+}
+
+.forecast_chart_label {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+}
+.chart {
+    position: absolute;
+    height: 85%;
+    bottom: 0;
+    left: 0;
+    width: 1000px;
+}
+
+.chart > canvas {
+    pointer-events: none;
 }
 
 .weather_icon {
@@ -131,11 +141,14 @@
 
 .city_name {
     font-size: 2.5rem;
-    float: right;
+    margin-left: auto;
+    margin-right: 0;
 }
 
 .current_time {
     font-size: 1.5rem;
+    margin-left: auto;
+    margin-right: 0;
 }
 
 .forecast_widget {
@@ -163,16 +176,21 @@
     width: 37px;
     height: 37px;
     top: 50%;
-    left: 50%;
+    left: 45%;
     transform: translate(-50%, -50%);
 }
 
 .forecast_temp {
     position: absolute;
-    font-size: 1.25rem;
+    display: grid;
+    grid-template-columns: 40px auto 40px;
+    font-size: 1rem;
     right: 8px;
+    align-items: center;
+    text-align: center;
     top: 50%;
     transform: translateY(-50%);
+
 }
 
 .mini_widget_text {
@@ -198,6 +216,7 @@
     position: absolute;
     right: 12px;
     top: 50%;
+    // border: 1px solid black;
     transform: translateY(-45%);
 
 }

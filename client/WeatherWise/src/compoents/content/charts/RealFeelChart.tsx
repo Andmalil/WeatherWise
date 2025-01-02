@@ -1,6 +1,8 @@
 import { ComponentProps, useContext, useEffect, useRef } from "react";
 import { WeatherContext } from "../../../context/weatherContext";
 import { WeatherContextType } from "../../../@types/weather";
+import { toDegree, getRealFeelLevel, chartWidth } from "../../../constants/charts";
+import { backgroundColor } from "../../../constants/colors";
 
 export function RealFeelChart(props: ComponentProps<"canvas">) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -8,69 +10,45 @@ export function RealFeelChart(props: ComponentProps<"canvas">) {
 
     
 
-    
-    // const minTemp = 9
-    // const maxTemp = 27
-    const coldRange = [-50, 18]
-    const comfortRange = [18, 24]
-    const hotRange = [24, 40]
-    const getLevel = (temp: number) => {
-        if (temp > coldRange[0] && temp <= coldRange[1]) {
-            return (1-((temp-coldRange[1]) / (coldRange[0] - coldRange[1]))) * 0.5
-        } else if (temp > comfortRange[0] && temp <= comfortRange[1]) {
-            return 0.5 + (1-((temp-comfortRange[1]) / (comfortRange[0] - comfortRange[1]))) * (225/270-0.5)
-        } else if (temp > hotRange[0] && temp <= hotRange[1]) {
-            return (225/270) + (1-((temp-hotRange[1]) / (hotRange[0] - hotRange[1]))) * 0.33
-        } else if (temp > hotRange[1]) {
-            return 1
-        }
-        return 0
-    }
-
-    const toDegree = (n: number): number => {
-        return (n / 180) * Math.PI
-    }
 
     const drawChart = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+        // const coldFill = ctx.createConicGradient(toDegree(90), w/2, h/2)
+        // coldFill.addColorStop(0.125, "#10ABFD")
+        // coldFill.addColorStop(0.5, "#4E9CE2")
+
+        // const comfortFill = ctx.createConicGradient(toDegree(90), w/2, h/2)
+        // comfortFill.addColorStop(0.5, "#00E06C")
+        // comfortFill.addColorStop(0.75, "#04AD50")
+
+        // const hotFill = ctx.createConicGradient(toDegree(90), w/2, h/2)
+        // hotFill.addColorStop(0.75, "#FA9E3C")
+        // hotFill.addColorStop(0.875, "#E88C38")
+
         const coldFill = ctx.createConicGradient(toDegree(90), w/2, h/2)
         coldFill.addColorStop(0.125, "#10ABFD")
         coldFill.addColorStop(0.5, "#4E9CE2")
 
-        const comfortFill = ctx.createConicGradient(toDegree(90), w/2, h/2)
-        comfortFill.addColorStop(0.5, "#00E06C")
-        comfortFill.addColorStop(0.75, "#04AD50")
+        
+        coldFill.addColorStop(0.5, "#00E06C")
+        coldFill.addColorStop(0.75, "#04AD50")
 
-        const hotFill = ctx.createConicGradient(toDegree(90), w/2, h/2)
-        hotFill.addColorStop(0.75, "#FA9E3C")
-        hotFill.addColorStop(0.875, "#E88C38")
+        
+        coldFill.addColorStop(0.75, "#FA9E3C")
+        coldFill.addColorStop(0.875, "#E88C38")
 
 
-        ctx.strokeStyle = hotFill
-        ctx.lineWidth = Math.max(w, h) * 0.1
+        ctx.strokeStyle = coldFill
+        ctx.lineWidth = Math.max(w, h) * chartWidth
         ctx.lineCap = "round"
         ctx.beginPath()
         ctx.arc(w/2, h/2, Math.max(w, h)/2-Math.max(w, h) * 0.1, toDegree(135), toDegree(405), false)
         ctx.stroke()
         ctx.closePath()
 
-        ctx.beginPath()
-        ctx.strokeStyle = coldFill
-        ctx.arc(w/2, h/2, Math.max(w, h)/2-Math.max(w, h) * 0.1, toDegree(135), toDegree(270), false)
-        ctx.stroke()
-        ctx.closePath()
-
-        ctx.beginPath()
-        ctx.lineCap = "butt"
-        ctx.strokeStyle = comfortFill
-        ctx.arc(w/2, h/2, Math.max(w, h)/2-Math.max(w, h) * 0.1, toDegree(270), toDegree(360), false)
-        ctx.stroke()
-        ctx.closePath()
-
-
-        ctx.beginPath()
-        
-        ctx.strokeStyle = "#E6E6EF"
+        ctx.strokeStyle = backgroundColor
         ctx.lineWidth = Math.max(w, h) * 0.05
+
+        ctx.beginPath()
         ctx.moveTo(w/2, h/2)
         ctx.lineTo(w/2, h/2-Math.max(w, h) * 0.5)
         ctx.moveTo(w/2, h/2)
@@ -98,7 +76,7 @@ export function RealFeelChart(props: ComponentProps<"canvas">) {
 
         ctx.strokeStyle = "black"
         ctx.lineCap = "round"
-        ctx.fillStyle = "#E6E6EF"
+        ctx.fillStyle = backgroundColor
         ctx.lineWidth = Math.max(w, h) * 0.04
         ctx.beginPath()
         ctx.arc(w/2, h/2, radiusOfPoint, 0, Math.PI*2)
@@ -116,7 +94,7 @@ export function RealFeelChart(props: ComponentProps<"canvas">) {
             if (context) {
                 context.clearRect(0, 0, canvas.width, canvas.height)
                 drawChart(context, canvas.width, canvas.height)
-                drawArrow(context, getLevel(forecasts[currentCity].realFeel), canvas.width, canvas.height)
+                drawArrow(context, getRealFeelLevel(forecasts[currentCity].realFeel), canvas.width, canvas.height)
             }
             // (forecasts[0].feelLike - minTemp)/(maxTemp-minTemp)
         }

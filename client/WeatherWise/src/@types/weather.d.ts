@@ -16,6 +16,12 @@ export interface IWeather {
     windDegree: number;
     windSpeed: number;
     pressure: number;
+    sunrise: number;
+    sunset: number;
+    timezone: string;
+    maxTemps: { today: number, tomorrow: number, thirdDay: number };
+    minTemps: { today: number, tomorrow: number, thirdDay: number };
+    forecastWeatherStatuses: { today: number, tomorrow: number, thirdDay: number }
 }
 
 export type HintType = {
@@ -34,4 +40,10 @@ export type WeatherContextType = {
     saveForecast: (newWeather: IWeather) => void;
     currentCity: number;
     saveCurrentCity: (cityNumber: number) => void
+}
+
+export interface IChartProps {
+    width: string,
+    height: string,
+    className: string
 }

@@ -16,16 +16,34 @@ export const WeatherProvider: React.FC<{children: React.ReactNode}> = ({ childre
             realFeel: -50,
             tempUnits: "C",
             hourForecast: [2, 1, 2, 3, 4, 2, 3, 4, 5, 2, 1, 0, -1, 1, 2, 3, 4, 2, 3, 4, 5, 2, 1, 0, -1],
-            uvLevel: 11,
+            uvLevel: 5,
             humidity: 89,
             windDirection: "WNW",
             windDegree: 287,
             windSpeed: 14.8,
-            pressure: 1023
+            pressure: 1023,
+            sunrise: 720,
+            sunset: 1380,
+            timezone: "Europe/London",
+            maxTemps: {
+                today: 2,
+                tomorrow: 10,
+                thirdDay: -25
+            },
+            minTemps: {
+                today: 4,
+                tomorrow: 125,
+                thirdDay: -88
+            },
+            forecastWeatherStatuses: {
+                today: 1003,
+                tomorrow: 1009,
+                thirdDay: 1003
+            }
         }
     ])
     const saveForecast = (newWeather: IWeather) => {
-        setForecasts([...forecasts, newWeather])
+        setForecasts([newWeather])
     }
 
     const [searchHints, setSearchHints] = React.useState<HintType[]>([])
@@ -37,7 +55,8 @@ export const WeatherProvider: React.FC<{children: React.ReactNode}> = ({ childre
     const [currentCity, setCurrentCity] = React.useState(0)
 
     const saveCurrentCity = (cityNumber: number) => {
-        setCurrentCity(cityNumber)
+        console.log("City number: ", cityNumber)
+        setCurrentCity(0)
     }
 
     return (

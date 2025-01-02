@@ -1,5 +1,5 @@
 import { WeatherScreen } from "./WeatherScreen"
-import { WeatherChart } from "./ForecastChartWidget"
+import { HourlyForecastChartWidget } from "./HourlyForecastChartWidget"
 import { WeatherWidgetMini } from "./WeatherWidgetMini"
 
 import { UVChart } from "./charts/UVChart"
@@ -12,6 +12,8 @@ import styles from "../../styles/components/Content.module.scss"
 import { useContext } from "react"
 import { WeatherContext } from "../../context/weatherContext"
 import { WeatherContextType } from "../../@types/weather"
+import { SunCycleChart } from "./charts/SunCycleChart"
+import { windDirections, timeFormat } from "../../constants/charts"
 
 export function Weather() {
     const { forecasts, currentCity } = useContext(WeatherContext) as WeatherContextType
@@ -30,29 +32,12 @@ export function Weather() {
         uvLevel = "Extreme"
     }
 
-    var windDirections: { [key: string]: string } = {
-        "N": "North", 
-        "NNE": "North-northeast",
-        "NE": "Northeast",
-        "ENE": "East-northeast",
-        "E": "East",
-        "ESE": "East-southeast",
-        "SE": "Southeast",
-        "SSE": "South-southeast",
-        "S": "South",
-        "SSW": "South-southwest",
-        "SW": "Southwest",
-        "WSW": "West-southWest",
-        "W": "West",
-        "WNW": "West-northwest",
-        "NW": "Northwest",
-        "NNW": "North-northwest"
-    }
+    
     
     return (
         <div className={ styles.weather }>
-            <WeatherScreen />
-            <WeatherChart />
+            <WeatherScreen /> 
+            <HourlyForecastChartWidget />
             
             
             { [{title: "UV", value: uvLevel, graphics: UVChart},
@@ -60,9 +45,9 @@ export function Weather() {
             {title: "real feel", value: `${forecasts[currentCity].realFeel}°`, graphics: RealFeelChart},
             {title: windDirections[forecasts[currentCity].windDirection], value: `${forecasts[currentCity].windSpeed}`, graphics: Compass},
             {title: "Pressure", value: forecasts[currentCity].pressure.toString(), graphics: PressureChart},
-            {title: "UV", value: "Weak", graphics: UVChart},
-            {title: "UV", value: "Weak", graphics: UVChart},
-            {title: "UV", value: "Weak", graphics: UVChart}
+            {title: forecasts[currentCity].isDay?"Sunset":"Sunrise", 
+                value: forecasts[currentCity].isDay?timeFormat(forecasts[currentCity].sunset):timeFormat(forecasts[currentCity].sunrise), 
+                graphics: SunCycleChart}
             ].map((g, index) => {
                 return <WeatherWidgetMini key={ index } { ...g } />
             }) }

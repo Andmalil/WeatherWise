@@ -1,22 +1,22 @@
 import { ComponentProps, useRef, useEffect, useContext } from "react";
 import { WeatherContext } from "../../../context/weatherContext"
 import { WeatherContextType } from "../../../@types/weather"
+import { toDegree, chartWidth } from "../../../constants/charts";
+
 import drop from "/light_theme_icons/blue_drop.svg"
 
 
 export function HumidityChart(props: ComponentProps<"canvas">) {
     const { forecasts, currentCity } = useContext(WeatherContext) as WeatherContextType
     const canvasRef = useRef<HTMLCanvasElement>(null)
-    const toDegree = (n: number): number => {
-        return (n / 180) * Math.PI
-    }
+
     const drawChartBackground = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
         const chartBackground = ctx.createConicGradient(toDegree(90), w/2, h/2)
         chartBackground.addColorStop(0.125, "#C7C7C7")
         chartBackground.addColorStop(0.875, "#A9A9A9")
 
         ctx.strokeStyle = chartBackground
-        ctx.lineWidth = Math.max(w, h) * 0.1
+        ctx.lineWidth = Math.max(w, h) * chartWidth
         ctx.lineCap = "round" 
         
         ctx.beginPath()
@@ -28,15 +28,19 @@ export function HumidityChart(props: ComponentProps<"canvas">) {
         const chartFill = ctx.createConicGradient(toDegree(90), w/2, h/2)
         chartFill.addColorStop(0.125, "#10ABFD")
         chartFill.addColorStop(0.875, "#4E9CE2")
+        
         ctx.strokeStyle = chartFill
+        ctx.lineWidth = Math.max(w, h) * chartWidth
+        ctx.lineCap = "round"
+        
         ctx.beginPath()
-        ctx.arc(w/2, h/2, Math.max(w, h)/2-Math.max(w, h) * 0.1, toDegree(135), toDegree(135+(270*value)), false)
+        ctx.arc(w/2, h/2, Math.max(w, h)*0.4, toDegree(135), toDegree(135+(270*value)), false)
         ctx.stroke()
         ctx.closePath()
     }
 
     const drawDrop = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
-        var drop_img = new Image()
+        const drop_img = new Image()
         drop_img.onload = () => {
             ctx.save()
             ctx.translate(w/2, h/2)

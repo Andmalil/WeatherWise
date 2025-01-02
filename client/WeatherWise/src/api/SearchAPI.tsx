@@ -1,6 +1,20 @@
 import { HintType } from "../@types/weather"
 import { IWeather } from "../@types/weather"
 
+function to24hour(time: string) {
+    var splitedTime = time.split(' ')
+    var hour = splitedTime[0].split(":")
+
+    if (splitedTime[1] == "PM") {
+        
+        if (hour[0] == "12") {
+            return Number(hour[1])
+        }
+        return (Number(hour[0])+12)*60 + Number(hour[1])
+    }
+
+    return (Number(hour[0]))*60 + Number(hour[1])
+}
 
 export async function getSearchHints(word: string, saveSearchHints: (hints: HintType[])=>void) {
     if (!word.length) {
@@ -59,7 +73,25 @@ export async function getWeather(id: number, forecastsCount: number, saveForecas
                 windDirection: data.current.wind_dir,
                 windDegree: data.current.wind_degree,
                 windSpeed: data.current.wind_kph,
-                pressure: data.current.pressure_mb
+                pressure: data.current.pressure_mb,
+                sunrise: to24hour(data.forecast.forecastday[0].astro.sunrise),
+                sunset: to24hour(data.forecast.forecastday[0].astro.sunset),
+                timezone: data.location.tz_id,
+                maxTemps: {
+                    today: data.forecast.forecastday[0].day.maxtemp_c,
+                    tomorrow: data.forecast.forecastday[1].day.maxtemp_c,
+                    thirdDay: data.forecast.forecastday[2].day.maxtemp_c
+                },
+                minTemps: {
+                    today: data.forecast.forecastday[0].day.mintemp_c,
+                    tomorrow: data.forecast.forecastday[1].day.mintemp_c,
+                    thirdDay: data.forecast.forecastday[2].day.mintemp_c
+                },
+                forecastWeatherStatuses: {
+                    today: data.forecast.forecastday[0].day.condition.code,
+                    tomorrow: data.forecast.forecastday[1].day.condition.code,
+                    thirdDay: data.forecast.forecastday[2].day.condition.code
+                }
             })
 
             

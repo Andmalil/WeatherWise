@@ -5,15 +5,12 @@ import compass_arrow from "/light_theme_icons/compass_light_arrow.svg"
 import compass_directions from "/light_theme_icons/compass_light_directions.svg"
 import { WeatherContext } from "../../../context/weatherContext";
 import { WeatherContextType } from "../../../@types/weather";
+import { toDegree } from "../../../constants/charts";
 
 
 export function Compass(props: ComponentProps<"canvas">) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const { forecasts, currentCity } = useContext(WeatherContext) as WeatherContextType
-
-    const toDegree = (n: number): number => {
-        return (n / 180) * Math.PI
-    }
 
     const drawCompass = (ctx: CanvasRenderingContext2D, angle: number, w: number, h: number) => {
         const compassScalesImg = new Image()
