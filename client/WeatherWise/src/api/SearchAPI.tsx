@@ -54,9 +54,18 @@ export async function getWeather(id: number, forecastsCount: number, saveForecas
         const data = await response.json()
         
         if (data) {
-            var forecastData: number[] = []
+            var forecastData: {temp: {c: number, f: number}, wind: {kph: number, mph: number}, weather: number}[][] = [[], []]
             for (var i=0; i<data.forecast.forecastday[0].hour.length; i++) {
-                forecastData.push(data.forecast.forecastday[0].hour[i].temp_c)
+                forecastData[0].push(
+                    {temp: {"c": data.forecast.forecastday[0].hour[i].temp_c, "f": data.forecast.forecastday[0].hour[i].temp_f},
+                    wind: {"kph": data.forecast.forecastday[0].hour[i].wind_kph, "mph": data.forecast.forecastday[0].hour[i].wind_mph},
+                    weather: data.forecast.forecastday[0].hour[i].condition.code})
+
+                forecastData[1].push(
+                    {temp: {"c": data.forecast.forecastday[1].hour[i].temp_c, "f": data.forecast.forecastday[1].hour[i].temp_f},
+                        wind: {"kph": data.forecast.forecastday[1].hour[i].wind_kph, "mph": data.forecast.forecastday[0].hour[i].wind_mph},
+                        weather: data.forecast.forecastday[1].hour[i].condition.code},
+                    )
             }
             saveForecast({
                 id: id,
@@ -64,28 +73,27 @@ export async function getWeather(id: number, forecastsCount: number, saveForecas
                 isDay: data.current.is_day,
                 cityName: data.location.name,
                 weatherStatus: data.current.condition.text,
-                currentTemp: Math.round(data.current.temp_c),
-                realFeel: Math.round(data.current.feelslike_c),
-                tempUnits: "c",
+                currentTemp: {"c": data.current.temp_c, "f": data.current.temp_f},
+                realFeel: {"c": data.current.feelslike_c, "f": data.current.feelslike_f},
                 hourForecast: forecastData,
                 uvLevel: data.current.uv,
                 humidity: data.current.humidity,
                 windDirection: data.current.wind_dir,
                 windDegree: data.current.wind_degree,
-                windSpeed: data.current.wind_kph,
-                pressure: data.current.pressure_mb,
+                windSpeed: {"kph": data.current.wind_kph, "mph": data.current.wind_mph},
+                pressure: {"mbar": data.current.pressure_mb, "inhg": data.current.pressure_in},
                 sunrise: to24hour(data.forecast.forecastday[0].astro.sunrise),
                 sunset: to24hour(data.forecast.forecastday[0].astro.sunset),
                 timezone: data.location.tz_id,
                 maxTemps: {
-                    today: data.forecast.forecastday[0].day.maxtemp_c,
-                    tomorrow: data.forecast.forecastday[1].day.maxtemp_c,
-                    thirdDay: data.forecast.forecastday[2].day.maxtemp_c
+                    today: {"c": data.forecast.forecastday[0].day.maxtemp_c, "f": data.forecast.forecastday[0].day.maxtemp_f},
+                    tomorrow: {"c": data.forecast.forecastday[1].day.maxtemp_c, "f": data.forecast.forecastday[1].day.maxtemp_f},
+                    thirdDay: {"c": data.forecast.forecastday[2].day.maxtemp_c, "f": data.forecast.forecastday[2].day.maxtemp_f}
                 },
                 minTemps: {
-                    today: data.forecast.forecastday[0].day.mintemp_c,
-                    tomorrow: data.forecast.forecastday[1].day.mintemp_c,
-                    thirdDay: data.forecast.forecastday[2].day.mintemp_c
+                    today: {"c": data.forecast.forecastday[0].day.mintemp_c, "f": data.forecast.forecastday[0].day.mintemp_f},
+                    tomorrow: {"c": data.forecast.forecastday[1].day.mintemp_c, "f": data.forecast.forecastday[1].day.mintemp_f},
+                    thirdDay: {"c": data.forecast.forecastday[2].day.mintemp_c, "f": data.forecast.forecastday[2].day.mintemp_f}
                 },
                 forecastWeatherStatuses: {
                     today: data.forecast.forecastday[0].day.condition.code,

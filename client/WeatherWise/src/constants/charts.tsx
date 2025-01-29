@@ -9,11 +9,6 @@ import sleet from "/light_theme_icons/sleet.svg"
 import snow from "/light_theme_icons/snow.svg"
 import storm from "/light_theme_icons/storm.svg"
 
-
-export const toDegree = (n: number): number => {
-    return (n / 180) * Math.PI
-}
-
 export const weatherIcons: { [key: number]: string[] } = {
     1000: [clear_night, clear_day],
     1003: [partly_cloudy_night, partly_cloudy_day],
@@ -67,41 +62,19 @@ export const weatherIcons: { [key: number]: string[] } = {
 
 export const chartWidth = 0.07
 
-// 24-Hour Forecast Chart
-export const hourlyForecastLabels = ["", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00",
-    "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"
-]
-
-// UV Chart
-export const rainbowGradient = (ctx: CanvasRenderingContext2D, w: number, h: number): CanvasGradient => {
-    const gradient = ctx.createConicGradient(toDegree(90), w/2, h/2)
-    gradient.addColorStop(0.125, "#FF2E2E")
-    gradient.addColorStop(0.25, "#FFB52E")
-    gradient.addColorStop(0.375, "#FFFF2E")
-    gradient.addColorStop(0.5, "#69C96E")
-    gradient.addColorStop(0.625, "#38AEE6")
-    gradient.addColorStop(0.75, "#2E2EFF")
-    gradient.addColorStop(0.875, "#7C73D9")
-    return gradient
-}
-
 // Real Feel Chart
 export const coldRange = [-50, 18]
 export const comfortRange = [18, 24]
 export const hotRange = [24, 40]
 
-export const getRealFeelLevel = (temp: number) => {
-    if (temp > coldRange[0] && temp <= coldRange[1]) {
-        return (1-((temp-coldRange[1]) / (coldRange[0] - coldRange[1]))) * 0.5
-    } else if (temp > comfortRange[0] && temp <= comfortRange[1]) {
-        return 0.5 + (1-((temp-comfortRange[1]) / (comfortRange[0] - comfortRange[1]))) * (225/270-0.5)
-    } else if (temp > hotRange[0] && temp <= hotRange[1]) {
-        return (225/270) + (1-((temp-hotRange[1]) / (hotRange[0] - hotRange[1]))) * 0.33
-    } else if (temp > hotRange[1]) {
-        return 1
-    }
-    return 0
-}
+// Sun Cycle Chart
+export const timeSunrisePos = 0.21
+export const timeSunsetPos = 0.79
+
+// 24-Hour Forecast Chart
+export const hourlyForecastLabels = ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00",
+    "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"
+]
 
 // Compass
 export const windDirections: { [key: string]: string } = {
@@ -124,36 +97,7 @@ export const windDirections: { [key: string]: string } = {
 }
 
 
-// Sun Cycle Chart
-export const bezierPoint = (cp1x: number, cp1y: number, cp2x: number, cp2y: number, x1: number, y1: number, x2: number, y2: number, t: number) => {
-    const mid_x1 = x1+(cp1x-x1)*t
-    const mid_y1 = cp1y+(y1-cp1y)*t
-    
-    const mid_x2 = cp2x+(x2-cp2x)*t
-    const mid_y2 = cp2y+(y2-cp2y)*t
 
-    const mid_x3 = cp1x + (cp2x - cp1x)*t
-    const mid_y3 = cp1y + (cp2y - cp1y)*t
 
-    const mid_x4 = mid_x1 + (mid_x3 - mid_x1) * t
-    const mid_y4 = mid_y1 + (mid_y3 - mid_y1) * t
-
-    const mid_x5 = mid_x3 + (mid_x2-mid_x3) * t
-    const mid_y5 = mid_y3 + (mid_y2-mid_y3) * t
-
-    const mid_x6 = mid_x4 + (mid_x5 - mid_x4)*t
-    const mid_y6 = mid_y4 + (mid_y5 - mid_y4)*t
-
-    return {x: mid_x6, y: mid_y6}
-}
-
-export const timeSunrisePos = 0.21
-export const timeSunsetPos = 0.79
-
-export const timeFormat = (time: number) => {
-        const hours =  String(Math.floor(time/60))
-        const minutes = String(time%60)
-        return `${hours.length < 2 ? "0" + hours : hours}:${minutes.length < 2 ? "0" + minutes : minutes}`
-}
 
 

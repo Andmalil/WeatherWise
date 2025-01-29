@@ -1,12 +1,14 @@
 import { ComponentProps, useContext, useEffect, useRef } from "react";
 import { WeatherContext } from "../../../context/weatherContext";
 import { WeatherContextType } from "../../../@types/weather";
-import { toDegree, getRealFeelLevel, chartWidth } from "../../../constants/charts";
+import { chartWidth } from "../../../constants/charts"
+import { getRealFeelLevel } from "../../../constants/functions";
+import { toDegree } from "../../../constants/functions";
 import { backgroundColor } from "../../../constants/colors";
 
 export function RealFeelChart(props: ComponentProps<"canvas">) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
-    const { forecasts, currentCity } = useContext(WeatherContext) as WeatherContextType
+    const { forecasts, currentCity, currentUnits } = useContext(WeatherContext) as WeatherContextType
 
     
 
@@ -94,7 +96,7 @@ export function RealFeelChart(props: ComponentProps<"canvas">) {
             if (context) {
                 context.clearRect(0, 0, canvas.width, canvas.height)
                 drawChart(context, canvas.width, canvas.height)
-                drawArrow(context, getRealFeelLevel(forecasts[currentCity].realFeel), canvas.width, canvas.height)
+                drawArrow(context, getRealFeelLevel(forecasts[currentCity].realFeel[currentUnits.temp]), canvas.width, canvas.height)
             }
             // (forecasts[0].feelLike - minTemp)/(maxTemp-minTemp)
         }

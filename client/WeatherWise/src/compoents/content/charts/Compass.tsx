@@ -1,16 +1,16 @@
-import { ComponentProps, useContext, useEffect, useRef } from "react";
+import { ComponentProps, useContext, useEffect, useRef } from "react"
 
 import compass_scales from "/light_theme_icons/compass_light_scales.svg"
 import compass_arrow from "/light_theme_icons/compass_light_arrow.svg"
 import compass_directions from "/light_theme_icons/compass_light_directions.svg"
-import { WeatherContext } from "../../../context/weatherContext";
-import { WeatherContextType } from "../../../@types/weather";
-import { toDegree } from "../../../constants/charts";
+import { WeatherContext } from "../../../context/weatherContext"
+import { WeatherContextType } from "../../../@types/weather"
+import { toDegree } from "../../../constants/functions"
 
 
 export function Compass(props: ComponentProps<"canvas">) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
-    const { forecasts, currentCity } = useContext(WeatherContext) as WeatherContextType
+    const { forecasts, currentCity, currentUnits } = useContext(WeatherContext) as WeatherContextType
 
     const drawCompass = (ctx: CanvasRenderingContext2D, angle: number, w: number, h: number) => {
         const compassScalesImg = new Image()
@@ -32,7 +32,7 @@ export function Compass(props: ComponentProps<"canvas">) {
             ctx.rotate(toDegree(angle))
             ctx.drawImage(compassArrowImg, -compassArrowImg.width/2, -compassArrowImg.height/2)
             ctx.restore()
-            drawUnits(ctx, "km/h", w, h)
+            drawUnits(ctx, currentUnits.wind=="kph" ? "km/h" : "mph", w, h)
         }
 
         compassDirectionsImg.onload = () => {
@@ -43,7 +43,6 @@ export function Compass(props: ComponentProps<"canvas">) {
             ctx.restore()
         }
 
-        
         compassScalesImg.src = compass_scales
         compassArrowImg.src = compass_arrow
         compassDirectionsImg.src = compass_directions
@@ -73,6 +72,6 @@ export function Compass(props: ComponentProps<"canvas">) {
                 
             }
         }
-    }, [forecasts])
+    }, [forecasts, currentUnits])
     return <canvas ref={ canvasRef } { ...props } /> 
 }

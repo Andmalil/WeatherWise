@@ -13,10 +13,11 @@ import { useContext } from "react"
 import { WeatherContext } from "../../context/weatherContext"
 import { WeatherContextType } from "../../@types/weather"
 import { SunCycleChart } from "./charts/SunCycleChart"
-import { windDirections, timeFormat } from "../../constants/charts"
+import { windDirections } from "../../constants/charts"
+import { timeFormat } from "../../constants/functions"
 
 export function Weather() {
-    const { forecasts, currentCity } = useContext(WeatherContext) as WeatherContextType
+    const { forecasts, currentCity, currentUnits } = useContext(WeatherContext) as WeatherContextType
 
     const uvIndex = forecasts[currentCity].uvLevel
     var uvLevel = "Low"
@@ -42,9 +43,9 @@ export function Weather() {
             
             { [{title: "UV", value: uvLevel, graphics: UVChart},
             {title: "Humidity", value: `${forecasts[currentCity].humidity}%`, graphics: HumidityChart},
-            {title: "real feel", value: `${forecasts[currentCity].realFeel}°`, graphics: RealFeelChart},
-            {title: windDirections[forecasts[currentCity].windDirection], value: `${forecasts[currentCity].windSpeed}`, graphics: Compass},
-            {title: "Pressure", value: forecasts[currentCity].pressure.toString(), graphics: PressureChart},
+            {title: "real feel", value: `${Math.round(forecasts[currentCity].realFeel[currentUnits.temp])}°`, graphics: RealFeelChart},
+            {title: windDirections[forecasts[currentCity].windDirection], value: `${forecasts[currentCity].windSpeed[currentUnits.wind]}`, graphics: Compass},
+            {title: "Pressure", value: forecasts[currentCity].pressure[currentUnits.press].toString(), graphics: PressureChart},
             {title: forecasts[currentCity].isDay?"Sunset":"Sunrise", 
                 value: forecasts[currentCity].isDay?timeFormat(forecasts[currentCity].sunset):timeFormat(forecasts[currentCity].sunrise), 
                 graphics: SunCycleChart}

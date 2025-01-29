@@ -6,23 +6,24 @@ export interface IWeather {
     isDay: number;
     cityName: string;
     weatherStatus: string;
-    currentTemp: number;
-    realFeel: number;
-    tempUnits: string;
-    hourForecast: number[];
+    currentTemp: { [key: string]: number };
+    realFeel: { [key: string]: number };
+    hourForecast: {temp: { [key: string]: number }, wind: { [key: string]: number }, weather: number}[][];
     uvLevel: number;
     humidity: number;
     windDirection: string;
     windDegree: number;
-    windSpeed: number;
-    pressure: number;
+    windSpeed: { [key: string]: number };
+    pressure: { [key: string]: number };
     sunrise: number;
     sunset: number;
     timezone: string;
-    maxTemps: { today: number, tomorrow: number, thirdDay: number };
-    minTemps: { today: number, tomorrow: number, thirdDay: number };
+    maxTemps: { today: { [key: string]: number }, tomorrow: { [key: string]: number }, thirdDay: { [key: string]: number } };
+    minTemps: { today: { [key: string]: number }, tomorrow: { [key: string]: number }, thirdDay: { [key: string]: number } };
     forecastWeatherStatuses: { today: number, tomorrow: number, thirdDay: number }
 }
+
+export type UnitsType = {temp: string, wind: string, press: string}
 
 export type HintType = {
     ID: number, 
@@ -39,7 +40,9 @@ export type WeatherContextType = {
     forecasts: IWeather[];
     saveForecast: (newWeather: IWeather) => void;
     currentCity: number;
-    saveCurrentCity: (cityNumber: number) => void
+    saveCurrentCity: (cityNumber: number) => void;
+    currentUnits: UnitsType;
+    saveCurrentUnits: (temp: string|null, wind: string|null, press: string|null) => void
 }
 
 export interface IChartProps {
@@ -47,3 +50,4 @@ export interface IChartProps {
     height: string,
     className: string
 }
+

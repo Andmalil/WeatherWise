@@ -10,3 +10,21 @@ header {
     z-index: 0;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
 }
+
+.header_content {
+    position: absolute;
+    display: grid;
+    // grid-template-columns: 537px 30px;
+    grid-template-columns: 537px 170px;
+    column-gap: 10px;
+    // width: 537px;
+    height: 30px;
+    left: 50%;
+    // margin-top: auto;
+    // margin-right: auto;
+    // margin-left: auto;
+    // vertical-align: middle;
+    // margin: auto;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

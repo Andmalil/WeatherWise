@@ -90,8 +90,22 @@
     font-family: inter;
     font-size: 1.5rem;
     text-align: center;
+    
+    
     top: 50%;
     transform: translateY(-50%);
+}
+
+.status > p{
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.weather_text_status:hover{
+    overflow: visible;
+    text-overflow: clip;
 }
 
 
@@ -101,7 +115,7 @@
     top: 50%;
     transform: translateY(-50%);
     margin-left: 7px;
-    font-size: 8rem;
+    font-size: 7rem;
 }
 
 .weather_chart {
@@ -120,7 +134,8 @@
     height: 85%;
     bottom: 0;
     left: 0;
-    width: 1000px;
+    // width: 1000px;
+    // width: 100%;
 }
 
 .chart > canvas {

@@ -11,7 +11,7 @@ import { weatherIcons } from "../../constants/charts"
 
 
 export function WeatherScreen() {
-    const { forecasts, currentCity } = useContext(WeatherContext) as WeatherContextType
+    const { forecasts, currentCity, currentUnits } = useContext(WeatherContext) as WeatherContextType
 
     var [currentTime, setCurrentTime] = useState(new Date())
     useEffect(() => {
@@ -29,9 +29,9 @@ export function WeatherScreen() {
             <div className={ styles.current_weather }>
             <div className={ styles.status }>
                 <img className={ styles.weather_icon } src={ weatherIcons[forecasts[currentCity].iconId][forecasts[currentCity].isDay] }/>
-                <div>{ forecasts[currentCity].weatherStatus }</div>
+                <p className={ styles.weather_text_status }>{ forecasts[currentCity].weatherStatus }</p>
             </div>
-            <p className={ styles.temerature }>{ forecasts[currentCity].currentTemp }°</p>
+            <p className={ styles.temerature }>{ Math.round(forecasts[currentCity].currentTemp[currentUnits.temp]) }°</p>
             </div>
             <div className={ styles.time_and_city }>
                 <p className={ styles.city_name }>{ forecasts[currentCity].cityName }</p>

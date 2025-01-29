@@ -14,8 +14,6 @@ interface IForecastTempRange {
 export function ForecastTempRange(props: IForecastTempRange) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     
-    
-
     const calculatePos = (value: number, min: number, max: number) => {
         const position = (value-min)/(max-min)
         if (position < 0) {
@@ -46,7 +44,6 @@ export function ForecastTempRange(props: IForecastTempRange) {
         ctx.strokeStyle = "black"
         ctx.fillStyle = "white"
         ctx.lineWidth = h*0.1
-        console.log(value)
         ctx.beginPath()
         ctx.arc(h/2+(w-h)*value, h/2, h/2-ctx.lineWidth/2, 0, Math.PI*2)
         ctx.fill()

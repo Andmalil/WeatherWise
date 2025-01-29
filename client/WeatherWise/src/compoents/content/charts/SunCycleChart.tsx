@@ -1,7 +1,8 @@
-import { ComponentProps, useContext, useEffect, useRef } from "react";
-import { WeatherContext } from "../../../context/weatherContext";
-import { WeatherContextType } from "../../../@types/weather";
-import { bezierPoint, timeFormat, timeSunrisePos, timeSunsetPos } from "../../../constants/charts";
+import { ComponentProps, useContext, useEffect, useRef } from "react"
+import { WeatherContext } from "../../../context/weatherContext"
+import { WeatherContextType } from "../../../@types/weather"
+import { timeSunrisePos, timeSunsetPos } from "../../../constants/charts"
+import { bezierPoint, timeFormat } from "../../../constants/functions"
 
 export function SunCycleChart(props: ComponentProps<"canvas">) {
     const { forecasts, currentCity } = useContext(WeatherContext) as WeatherContextType

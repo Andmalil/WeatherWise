@@ -1,7 +1,8 @@
-import { ComponentProps, useRef, useEffect, useContext } from "react";
+import { ComponentProps, useRef, useEffect, useContext } from "react"
 import { WeatherContext } from "../../../context/weatherContext"
 import { WeatherContextType } from "../../../@types/weather"
-import { toDegree, chartWidth } from "../../../constants/charts";
+import { chartWidth } from "../../../constants/charts"
+import { toDegree } from "../../../constants/functions"
 
 import drop from "/light_theme_icons/blue_drop.svg"
 

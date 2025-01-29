@@ -1,8 +1,12 @@
-import { useRef, ComponentProps, useEffect } from "react"
-import { toDegree } from "../../../constants/charts"
+import { useRef, ComponentProps, useEffect, useContext } from "react"
+import { toDegree } from "../../../constants/functions"
+import { WeatherContext } from "../../../context/weatherContext"
+import { WeatherContextType } from "../../../@types/weather"
 
 export function PressureChart(props: ComponentProps<"canvas">) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
+    const { currentUnits } = useContext(WeatherContext) as WeatherContextType
+
 
     const indicatorLength = 12
 
@@ -100,7 +104,7 @@ export function PressureChart(props: ComponentProps<"canvas">) {
                 drawChart(context, canvas.width, canvas.height)
                 drawIndicator(context, 0.1, canvas.width, canvas.height)
                 drawArrow(context, canvas.width, canvas.height)
-                drawUnits(context, "mbar", canvas.width, canvas.height)
+                drawUnits(context, currentUnits.press=="mbar" ? "mbar" : "inHg", canvas.width, canvas.height)
                 
             }
         }

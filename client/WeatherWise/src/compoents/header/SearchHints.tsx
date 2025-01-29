@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { RefObject, useContext, useEffect } from "react"
 import styles from "../../styles/components/Search.module.scss"
 
 import { getSearchHints, getWeather } from "../../api/SearchAPI";
@@ -8,18 +8,23 @@ import { WeatherContext } from "../../context/weatherContext"
 interface hintsProps {
     word: string;
     setInputValue: (value: string) => void;
+    searchRef: RefObject<HTMLInputElement>;
 }
 
 export function SearchHints(props: hintsProps) {
     const { searchHints, saveSearchHints, forecasts, saveForecast, saveCurrentCity } = useContext(WeatherContext) as WeatherContextType
 
-    const onCityNameClick = (name: string, country: string, id: number) => {
+    const onCityNameClick = (name: string, country: string, id: number, searchRef: RefObject<HTMLInputElement>) => {
         props.setInputValue(`${name} (${country})`)
+        const search = searchRef.current
+        if (search) {
+            search.blur()
+        }
         getWeather(id, forecasts.length, saveForecast, saveCurrentCity)
     }
     const HintListLayout = searchHints.map((city) => 
         <li key={ city.ID } className={ styles.hintListItem }>
-            <button onClick={ () => onCityNameClick(city.Name, city.Country, city.ID) }>{ city.Name } ({ city.Country })</button>
+            <button onClick={ () => onCityNameClick(city.Name, city.Country, city.ID, props.searchRef) }>{ city.Name } ({ city.Country })</button>
         </li>
     )
 

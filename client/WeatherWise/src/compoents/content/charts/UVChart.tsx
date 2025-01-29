@@ -1,7 +1,9 @@
 import { useRef, ComponentProps, useEffect, useContext } from "react"
 import { WeatherContext } from "../../../context/weatherContext"
 import { WeatherContextType } from "../../../@types/weather"
-import { toDegree, rainbowGradient, chartWidth } from "../../../constants/charts"
+import { chartWidth } from "../../../constants/charts"
+import { toDegree } from "../../../constants/functions"
+import { rainbowGradient } from "../../../constants/gradients"
 import { backgroundColor } from "../../../constants/colors"
  
 export function UVChart(props: ComponentProps<"canvas">) {
