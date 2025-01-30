@@ -4,7 +4,6 @@ import styles from "../../styles/components/Search.module.scss"
 import { getSearchHints, getWeather } from "../../api/SearchAPI";
 import { WeatherContextType } from "../../@types/weather";
 import { WeatherContext } from "../../context/weatherContext"
-// import { motion } from "framer-motion"
 interface hintsProps {
     word: string;
     setInputValue: (value: string) => void;

@@ -3,7 +3,7 @@ import { WeatherContext } from "../../../context/weatherContext"
 import { WeatherContextType } from "../../../@types/weather"
 import { hourlyForecastLabels, weatherIcons } from "../../../constants/charts"
 
-const forecastChartColor = "#5CC14D"
+const forecastChartColor = "#4E9CE2"
 
 export function HourlyForecastChart(props: ComponentProps<"canvas">) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -15,21 +15,30 @@ export function HourlyForecastChart(props: ComponentProps<"canvas">) {
         return (value-min)*((size/(max-min)))
     }
 
-    const drawChart = (ctx: CanvasRenderingContext2D, w: number, h: number, width: number, color: string, values: number[], paddings: number[]) => {
-        const spaceBetween = (w-(paddings[1]+paddings[3]))/(values.length-1)
-        const minValue = Math.min(...values) // minimal value in the data set
-        const maxValue = Math.max(...values) // maximal value in the data set
+    const drawChart = (ctx: CanvasRenderingContext2D, w: number, h: number, width: number, color: string, values: number[][], paddings: number[]) => {
+        const spaceBetween = (w-(paddings[1]+paddings[3]))/(values[0].length-1)
+        const minValue = Math.min(...values[0], ...values[1]) // minimal value in the data set
+        const maxValue = Math.max(...values[0], ...values[1]) // maximal value in the data set
 
         ctx.strokeStyle = color
         ctx.lineWidth = width
 
         ctx.beginPath()
-        for (var i=1; i<values.length; i++) {
+        
+
+        for (var i=0; i<24; i++) {
+
+            const day_index1 = Math.floor(((i-1)+now.getHours())/(values[0].length)) // it's today or tomorrow
+            const hour_index1 = ((i-1)+now.getHours())%(values[0].length) // What time is it
+
+            const day_index2 = Math.floor((i+now.getHours())/(values[0].length))
+            const hour_index2 = (i+now.getHours())%(values[0].length)
+
             const x1 = (i-1)*spaceBetween+paddings[3]
-            const y1 = (h-paddings[2]) - normolization(h - (paddings[0]+paddings[2]), minValue, maxValue, values[i-1])
-           
+            const y1 = (h-paddings[2]) - normolization(h - (paddings[0]+paddings[2]), minValue, maxValue, values[day_index1][hour_index1])
+
             const x2 = i*spaceBetween+paddings[3]
-            const y2 = (h-paddings[2]) - normolization(h - (paddings[0]+paddings[2]), minValue, maxValue, values[i])
+            const y2 = (h-paddings[2]) - normolization(h - (paddings[0]+paddings[2]), minValue, maxValue, values[day_index2][hour_index2])
             
             ctx.moveTo(x1, y1)
             
@@ -40,6 +49,9 @@ export function HourlyForecastChart(props: ComponentProps<"canvas">) {
                 y2,
                 x2, y2
             )
+
+            ctx.font = `${h/17}px Inter`
+            ctx.fillText(`${Math.round(values[day_index2][hour_index2])}°`, x2, y2-15)
         }
         ctx.stroke()
         ctx.closePath()
@@ -55,18 +67,12 @@ export function HourlyForecastChart(props: ComponentProps<"canvas">) {
         const windSpeedUnit = currentUnits.wind == "kph" ? "km/h" : "mph"
 
         ctx.fillStyle = "#87858F"
-        ctx.rect(0, 0, w, h)
-        ctx.stroke()
         
-        var max_height = 0
-        
-
         ctx.beginPath()
         for (var i=0; i<24; i++) {
             const x = (i*spaceBetween)
 
             ctx.font = `Bold ${h/20}px Inter`
-           console.log(data)
             const timeLabel = i==0 ? "Now" : hourlyForecastLabels[(i+now.getHours())%(data[0].length)]
 
             const labelMeasure = ctx.measureText(timeLabel)
@@ -96,7 +102,14 @@ export function HourlyForecastChart(props: ComponentProps<"canvas">) {
                 ctx.restore()
                 }
             }
-            weather.src = weatherIcons[data[0][i].weather][forecasts[currentCity].isDay]
+            const day_index = Math.floor((i+now.getHours())/(data[0].length))
+            const hour_index = (i+now.getHours())%(data[0].length)
+            const time = (i+now.getHours())*60
+            const sr = forecasts[currentCity].sunrise // sunrise time
+            const ss = forecasts[currentCity].sunset // sunset time
+            console.log(time, sr, ss)
+
+            weather.src = weatherIcons[data[day_index][hour_index].weather][time>sr&&time<ss?1:0]
             ctx.stroke()
             
 
@@ -111,13 +124,13 @@ export function HourlyForecastChart(props: ComponentProps<"canvas">) {
             if (canvas) {
                 const context = canvas.getContext("2d")
                 if (context) { 
-                    const paddings = [12, 0, 40, 26]
+                    const paddings = [40, 0, 100, 26]
                     context.clearRect(0, 0, canvas.width, canvas.height)
-                    drawChart(context, canvas.width, canvas.height, 2, forecastChartColor, forecasts[currentCity].hourForecast[0].map(e=>e.temp[currentUnits.temp]), paddings)
+                    drawChart(context, canvas.width, canvas.height, 2, forecastChartColor, forecasts[currentCity].hourForecast.map(e=>e.map(e2 => e2.temp[currentUnits.temp])), paddings)
                     drawLabels(context, canvas.width, canvas.height, forecasts[currentCity].hourForecast, 13, paddings)
                 }
             }
         }
-    })
+    }, [currentUnits, forecasts])
     return <canvas ref={ canvasRef } {...props}/>
 }

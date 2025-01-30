@@ -14,18 +14,6 @@ export function RealFeelChart(props: ComponentProps<"canvas">) {
 
 
     const drawChart = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
-        // const coldFill = ctx.createConicGradient(toDegree(90), w/2, h/2)
-        // coldFill.addColorStop(0.125, "#10ABFD")
-        // coldFill.addColorStop(0.5, "#4E9CE2")
-
-        // const comfortFill = ctx.createConicGradient(toDegree(90), w/2, h/2)
-        // comfortFill.addColorStop(0.5, "#00E06C")
-        // comfortFill.addColorStop(0.75, "#04AD50")
-
-        // const hotFill = ctx.createConicGradient(toDegree(90), w/2, h/2)
-        // hotFill.addColorStop(0.75, "#FA9E3C")
-        // hotFill.addColorStop(0.875, "#E88C38")
-
         const coldFill = ctx.createConicGradient(toDegree(90), w/2, h/2)
         coldFill.addColorStop(0.125, "#10ABFD")
         coldFill.addColorStop(0.5, "#4E9CE2")
@@ -98,7 +86,6 @@ export function RealFeelChart(props: ComponentProps<"canvas">) {
                 drawChart(context, canvas.width, canvas.height)
                 drawArrow(context, getRealFeelLevel(forecasts[currentCity].realFeel[currentUnits.temp]), canvas.width, canvas.height)
             }
-            // (forecasts[0].feelLike - minTemp)/(maxTemp-minTemp)
         }
     }, [forecasts])
     return <canvas ref={ canvasRef } { ...props } />

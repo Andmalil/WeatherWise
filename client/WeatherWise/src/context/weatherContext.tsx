@@ -5,94 +5,7 @@ import {  IWeather, HintType, WeatherContextType, UnitsType } from "../@types/we
 export const WeatherContext = React.createContext<WeatherContextType | null>(null)
 
 export const WeatherProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
-    const [forecasts, setForecasts] = React.useState<IWeather[]>([
-        {
-            id: 1,
-            iconId: 1000,
-            isDay: 0,
-            cityName: "Moscow",
-            weatherStatus: "Moderate or heavy showers of ice pellets",
-            currentTemp: {"c": 2, "f": 20},
-            realFeel: {"c": -50, "f": -500},
-            hourForecast: [[
-                {temp: {c: 1, f: 10}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 2, f: 20}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 3, f: 30}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 4, f: 40}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 5, f: 50}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 4, f: 40}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 3, f: 30}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 2, f: 20}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 1, f: 10}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 0, f: 10}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -1, f: -11}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -2, f: -20}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -2, f: -20}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -3, f: -30}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -4, f: -40}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -5, f: -50}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -4, f: -40}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -2, f: -20}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 0, f: 10}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 2, f: 20}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 4, f: 40}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 6, f: 60}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 5, f: 50}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 3, f: 30}, wind: {kph: 13, mph: 14}, weather: 1000}
-            ],
-            [
-                {temp: {c: 1, f: 10}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 2, f: 20}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 3, f: 30}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 4, f: 40}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 5, f: 50}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 4, f: 40}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 3, f: 30}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 2, f: 20}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 1, f: 10}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 0, f: 10}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -1, f: -11}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -2, f: -20}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -2, f: -20}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -3, f: -30}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -4, f: -40}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -5, f: -50}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -4, f: -40}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: -2, f: -20}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 0, f: 10}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 2, f: 20}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 4, f: 40}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 6, f: 60}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 5, f: 50}, wind: {kph: 13, mph: 14}, weather: 1000},
-                {temp: {c: 3, f: 30}, wind: {kph: 13, mph: 14}, weather: 1000}
-            ]
-            ],
-            uvLevel: 5,
-            humidity: 89,
-            windDirection: "WNW",
-            windDegree: 287,
-            windSpeed: {"kph": 14.6, "mph": 20.3},
-            pressure: {"mbar": 1038, "inhg": 30.65},
-            sunrise: 720,
-            sunset: 1380,
-            timezone: "Europe/London",
-            maxTemps: {
-                today: {"c": 5, "f": 50},
-                tomorrow: {"c": 4, "f": 40},
-                thirdDay: {"c": 11, "f": 110}
-            },
-            minTemps: {
-                today: {"c": 0, "f": 10},
-                tomorrow: {"c": 1, "f": 10},
-                thirdDay: {"c": 1, "f": 10}
-            },
-            forecastWeatherStatuses: {
-                today: 1003,
-                tomorrow: 1009,
-                thirdDay: 1003
-            }
-        }
-    ])
+    const [forecasts, setForecasts] = React.useState<IWeather[]>([])
     const saveForecast = (newWeather: IWeather) => {
         setForecasts([newWeather])
     }
@@ -105,8 +18,7 @@ export const WeatherProvider: React.FC<{children: React.ReactNode}> = ({ childre
 
     const [currentCity, setCurrentCity] = React.useState(0)
 
-    const saveCurrentCity = (cityNumber: number) => {
-        console.log("City number: ", cityNumber)
+    const saveCurrentCity = () => {
         setCurrentCity(0)
     }
 

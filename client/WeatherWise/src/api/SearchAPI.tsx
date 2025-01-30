@@ -44,6 +44,7 @@ export async function getSearchHints(word: string, saveSearchHints: (hints: Hint
 
 
 export async function getWeather(id: number, forecastsCount: number, saveForecast: (newWeather: IWeather) => void, saveCurrentCity: (cityNumber: number) => void) {
+    
     const url = `http://127.0.0.1:3000/search/${id}`
     try {
         const response = await fetch(url, {method: "GET"})
@@ -67,6 +68,8 @@ export async function getWeather(id: number, forecastsCount: number, saveForecas
                         weather: data.forecast.forecastday[1].hour[i].condition.code},
                     )
             }
+
+            console.log(data)
             saveForecast({
                 id: id,
                 iconId: data.current.condition.code,

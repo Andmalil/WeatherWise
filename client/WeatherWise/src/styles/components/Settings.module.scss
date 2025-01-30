@@ -21,24 +21,6 @@
     outline: none;
 }
 
-// .settings:has(.settings_button:focus) > .settings_content,.settings_content>* {
-//     transition: all 0.5s;
-//     opacity: 100%;
-//     // width: 300px;
-//     // height: 100px;
-// }
-
-// .settings_content:hover {
-//     opacity: 100%;
-//     width: 300px;
-//     height: 100px;
-// }
-
-// .settings_button:hover > svg {
-//     transition: transform 1s;
-//     transform: rotate(3);
-// }
-
 .settings_content {
     background-color: white;
     position: absolute;
@@ -103,12 +85,4 @@
 .gear_filled {
     visibility: hidden;
 }
-
-// .settings_button:hover > .gear {
-//     visibility: hidden;
-// }
-
-// .settings_button:hover > .gear_filled {
-//     visibility: visible;
-// }
 

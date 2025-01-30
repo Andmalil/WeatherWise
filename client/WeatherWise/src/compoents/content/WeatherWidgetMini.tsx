@@ -17,7 +17,6 @@ export function WeatherWidgetMini(props: WidgetProps) {
                  <p className={ styles.mini_widget_value }>{ props.value }</p>
              </div>
             
-            {/* <props.graphics width="65px" height="65px" className={ styles.mini_widget_chart } /> */}
             <props.graphics width="100px" height="100px" className={ styles.mini_widget_chart } />
         </div>
         
